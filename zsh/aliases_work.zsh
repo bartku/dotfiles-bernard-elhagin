@@ -113,6 +113,14 @@ alias kpz1="ssh bernard.elhagin@$KAFKA_PROD_ZOO1"
 alias kpz2="ssh bernard.elhagin@$KAFKA_PROD_ZOO2"
 alias kpz3="ssh bernard.elhagin@$KAFKA_PROD_ZOO3"
 
+alias kpoc="ssh el-hbe1@test-kafka-poc-mgt01.hestia.polska"
+alias kpocw1="ssh el-hbe1@test-kafka-poc-wrk01.hestia.polska"
+alias kpocw2="ssh el-hbe1@test-kafka-poc-wrk02.hestia.polska"
+alias kpocw3="ssh el-hbe1@test-kafka-poc-wrk03.hestia.polska"
+alias kpocz1="ssh el-hbe1@test-kafka-poc-zk01.hestia.polska"
+alias kpocz2="ssh el-hbe1@test-kafka-poc-zk02.hestia.polska"
+alias kpocz3="ssh el-hbe1@test-kafka-poc-zk03.hestia.polska"
+
 # Baltica
 alias kbtts0="ssh bernard.elhagin@$KAFKA_BALTICA_TEST0"
 alias kbtts1="ssh bernard.elhagin@$KAFKA_BALTICA_TEST1"

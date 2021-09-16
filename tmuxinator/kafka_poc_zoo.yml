@@ -1,0 +1,13 @@
+# /home/bertold/.config/tmuxinator/kafka_poc_zoo.yml
+
+name: kafka_poc_zoo
+root: ~
+tmux_detached: false
+tmux: tmux
+windows:
+    - PREP_BROKERS:
+        layout: tiled
+        panes:
+          - clear; kpocz1
+          - clear; kpocz2
+          - clear; kpocz3
