@@ -69,6 +69,8 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'idbrii/vim-endoscope'
 Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
+Plug 'pangloss/vim-javascript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 call plug#end()
 
@@ -141,7 +143,7 @@ set autochdir
 set synmaxcol=200
 set fdc=0 " fold gutter
 set diffopt=internal,filler,context:3,indent-heuristic,algorithm:patience
-set clipboard^=unnamed
+set clipboard=unnamed,unnamedplus
 set hidden
 set updatetime=1000
 set timeoutlen=300
@@ -349,6 +351,14 @@ inoremap <c-j> <ESC>A
 inoremap <c-o> <ESC>I
 
 nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
+
+function ScratchBufferize()
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfu
+
+nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <cr>:normal gg<cr>
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -420,14 +430,16 @@ let g:airline_theme='papercolor'
 
 "colorscheme herokudoc
 "colorscheme hilal
-colorscheme dracula
+"colorscheme dracula
 "colorscheme nord
+colorscheme ayu
 
 set bg=dark
 
 "hi Normal guibg=black
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
+hi String guifg=hotpink
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
 hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
