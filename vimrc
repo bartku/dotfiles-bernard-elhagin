@@ -190,6 +190,8 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
 " Name tmux window with currently edited filename
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
+
 syntax enable
 
 " ]]]

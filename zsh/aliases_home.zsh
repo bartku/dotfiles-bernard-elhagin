@@ -47,3 +47,5 @@ if (command -v exa >/dev/null); then
 fi
 
 alias smart='~/Downloads/smartgit/bin/smartgit.sh &'
+
+alias nvim='export VIMRUNTIME=/usr/share/nvim/runtime && nvim'
