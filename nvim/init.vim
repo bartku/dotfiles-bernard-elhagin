@@ -5,20 +5,19 @@
 "
 set nocompatible
 
-if has('python3')
-endif
-
 " Initialize ------------------------------------------------------------- [[[
 filetype off
 
 " Download vim-plug if necessary
-let data_dir = '~/.vim'
+let data_dir = '~/.local/share/nvim/site'
 if empty(glob(data_dir . '/autoload/plug.vim'))
     silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+let g:python3_host_prog='/usr/bin/python3'
+
+call plug#begin('~/.local/share/nvim/site/plugged')
 
 Plug 'flazz/vim-colorschemes'
 Plug 'SirVer/ultisnips'
@@ -32,16 +31,10 @@ Plug 'sjl/gundo.vim'
 Plug 'godlygeek/tabular'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Valloric/MatchTagAlways'
-Plug 'gregsexton/gitv'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
-Plug 'sukima/xmledit'
 Plug 'whiteinge/diffconflicts'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/CSApprox'
@@ -53,7 +46,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier'
 Plug 'machakann/vim-sandwich'
 Plug 'chriskempson/base16-vim'
-Plug 'stsewd/fzf-checkout.vim'
 Plug 'szw/vim-maximizer'
 Plug 'dracula/vim'
 Plug 'romainl/vim-cool'
@@ -65,37 +57,45 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'thinca/vim-textobj-between'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'idbrii/vim-endoscope'
 Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
-Plug 'pangloss/vim-javascript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'folke/tokyonight.nvim', {'branch': 'main'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'windwp/nvim-ts-autotag'
 
 call plug#end()
 
 filetype plugin indent on
 
+lua << LUACONFIG
+    require('gitsigns').setup()
+    require('lspconfig').vimls.setup{}
+    require('lspconfig').jsonls.setup{}
+    require('lspconfig').bashls.setup{}
+    require('lspconfig').perlls.setup{}
+    require('lspconfig').tsserver.setup{}
+    require('lspconfig').yamlls.setup{}
+    require('nvim-ts-autotag').setup({
+        filetypes = { "xml" }
+    })
+LUACONFIG
+
 if filereadable('/usr/bin/python3')
   " Avoid search, speeding up start-up.
   let g:python3_host_prog='/usr/bin/python3'
   let g:pymode_python='python3'
-endif
-
-" Allow for per-machine overrides in ~/.vim/host/$HOSTNAME.vim and
-" ~/.vim/vimrc.local.
-let s:hostfile =
-      \ $HOME .
-      \ '/.vim/host/' .
-      \ substitute(hostname(), "\\..*", '', '') .
-      \ '.vim'
-if filereadable(s:hostfile)
-  execute 'source ' . s:hostfile
-endif
-
-let s:vimrc_local = $HOME . '/.vim/vimrc.local'
-if filereadable(s:vimrc_local)
-  execute 'source ' . s:vimrc_local
 endif
 
 " ]]]
@@ -106,7 +106,7 @@ set encoding=utf-8
 set noshowmode
 set scrolloff=8
 set wildmenu
-set wildmode=list:full
+set wildmode=longest,list,full
 set ruler
 set cmdheight=2
 set backspace=2
@@ -125,7 +125,6 @@ set relativenumber
 set gdefault
 set nobackup
 set noswapfile
-set dir=c:\tmp,c:\temp,.
 set autoread
 set ffs=unix,dos
 set expandtab
@@ -143,7 +142,7 @@ set autochdir
 set synmaxcol=200
 set fdc=0 " fold gutter
 set diffopt=internal,filler,context:3,indent-heuristic,algorithm:patience
-set clipboard=unnamed,unnamedplus
+set clipboard^=unnamed
 set hidden
 set updatetime=1000
 set timeoutlen=300
@@ -169,11 +168,11 @@ if has('persistent_undo')
     " Save all undo files in a single location (less messy, more risky)...
     "
     " First, create undo folder if it doesn't exist.
-    if !isdirectory($HOME . '/tmp/.VIM_UNDO_FILES')
-        call mkdir($HOME . '/tmp/.VIM_UNDO_FILES', "p")
+    if !isdirectory($HOME . '/tmp/.NVIM_UNDO_FILES')
+        call mkdir($HOME . '/tmp/.NVIM_UNDO_FILES', "p")
     endif
 
-    set undodir=$HOME/tmp/.VIM_UNDO_FILES
+    set undodir=$HOME/tmp/.NVIM_UNDO_FILES
 
     " Save a lot of back-history...
     set undolevels=5000
@@ -189,8 +188,6 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
 
 " Name tmux window with currently edited filename
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-
-autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 
 syntax enable
 
@@ -298,7 +295,7 @@ nnoremap ZZ ZQ
 
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>b :Telescope buffers<CR>
 
 " Avoid unintentional switch to Ex mode.
 nnoremap Q <nop>
@@ -352,27 +349,7 @@ inoremap <c-h> <left>
 inoremap <c-j> <ESC>A
 inoremap <c-o> <ESC>I
 
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==
-inoremap <C-k> <esc>:m .-2<CR>==
-nnoremap <leader>k :m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
-
 nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
-
-function ScratchBufferize()
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-endfu
-
-nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <cr>:normal gg<cr>
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -446,18 +423,22 @@ let g:airline_theme='papercolor'
 "colorscheme hilal
 "colorscheme dracula
 "colorscheme nord
+"colorscheme tokyonight
 colorscheme ayu
+
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC
+
+autocmd ColorScheme * hi String guifg=hotpink
 
 set bg=dark
 
 "hi Normal guibg=black
-hi Search guibg=yellow guifg=black
-hi Visual guibg=yellow guifg=black
-hi String guifg=hotpink
+autocmd ColorScheme * hi Search guibg=yellow guifg=black
+autocmd ColorScheme * hi Visual guibg=yellow guifg=black
 
-hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
-hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
-hi MatchParen guibg=bg guifg=red gui=bold
+autocmd ColorScheme * hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
+autocmd ColorScheme * hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
+autocmd ColorScheme * hi MatchParen guibg=bg guifg=red gui=bold
 
 " ]]]
 
@@ -590,31 +571,21 @@ endif
 "map <F5> :GundoToggle<CR>
 
 "]]]
-" FZF [[[
-
-"let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPS='--reverse'
+" Telescope [[[
 
 set wildignore+=*\\tmp\\*,*.sw?,*.zip,*.settings,*.esb_diagram,*\\*sandbox\\*,*.classpath,*\\.meta\\*
 set wildignore+=.git,*.orig
 set wildignore+=*.exe,*.o,*.obj,*.dll,*.manifest
 set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
 
-command! -bang -nargs=* FindInRepo call fzf#run({ 'sink': 'e', 'source': 'git ls-files' })
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope git_files<CR>
+nnoremap <leader>fa :Telescope live_grep<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fm :Telescope man_pages<CR>
+nnoremap <leader>fc :Telescope colorscheme<CR>
 
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fr :FindInRepo<CR>
-nnoremap <leader>fa :Rg<CR>
-nnoremap <leader>fc :Commits<CR>
-nnoremap <leader>fb :BCommits<CR>
-nnoremap <leader>fh :History<CR>
-
-nnoremap <leader>t :Helptags<CR>
-
-"imap <c-l> <plug>(fzf-complete-line)
-
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+nnoremap <leader>t :Telescope help_tags<CR>
 
 " ]]]
 " Startify [[[
@@ -786,4 +757,5 @@ endfunction
 cnoremap <expr> <cr> CCR()
 
 " ]]]
+
 "]]]

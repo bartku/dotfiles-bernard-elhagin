@@ -7,8 +7,8 @@ fi
 
 setopt EXTENDED_GLOB
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 export TERM="xterm-256color"
 
@@ -42,7 +42,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 export JAVA_HOME=/home/bertold/java/jdk-16.0.1
-export PATH=$HOME/Devel/kafka/bin/:/opt/kafka/bin/:$HOME/bin/ranger-1.9.2:$HOME/bin:$HOME/bin/starship:$HOME/npm/bin:/home/bertold/.gem/ruby/3.0.0/bin:$HOME/bin/arduino:$PATH
+export PATH=$HOME/Devel/kafka/bin/:/opt/kafka/bin/:$HOME/bin/ranger-1.9.2:$HOME/bin:$HOME/bin/starship:$HOME/npm/bin:/home/bertold/.gem/ruby/3.0.0/bin:$HOME/bin/arduino:$HOME/.cargo/bin:$PATH
 
 # Syntax highlighting color overrides
 # Define default styles.
