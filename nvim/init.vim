@@ -349,6 +349,18 @@ inoremap <c-h> <left>
 inoremap <c-j> <ESC>A
 inoremap <c-o> <ESC>I
 
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
 nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
 " ]]]
 
