@@ -106,7 +106,8 @@ set encoding=utf-8
 set noshowmode
 set scrolloff=8
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=full
+set wildoptions+=pum
 set ruler
 set cmdheight=2
 set backspace=2
