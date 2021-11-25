@@ -65,7 +65,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'thinca/vim-textobj-between'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'idbrii/vim-endoscope'
 Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
