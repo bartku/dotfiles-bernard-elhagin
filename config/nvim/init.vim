@@ -52,14 +52,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier'
 Plug 'machakann/vim-sandwich'
 Plug 'chriskempson/base16-vim'
-Plug 'stsewd/fzf-checkout.vim'
-Plug 'szw/vim-maximizer'
 Plug 'dracula/vim'
 Plug 'romainl/vim-cool'
-Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'markonm/traces.vim'
-Plug 'tommcdo/vim-lion'
-Plug 'preservim/tagbar'
 Plug 'rhysd/clever-f.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
@@ -72,6 +67,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
@@ -82,7 +78,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'marko-cerovac/material.nvim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'whatsthatsmell/codesmell_dark.vim'
 Plug 'AckslD/nvim-neoclip.lua'
@@ -360,7 +355,7 @@ nnoremap ZZ ZQ
 
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>b :Telescope buffers<CR>
 
 " Avoid unintentional switch to Ex mode.
 nnoremap Q <nop>
@@ -488,11 +483,12 @@ colorscheme codesmell_dark
 
 set bg=dark
 
-"hi Normal guibg=black
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
 hi String guifg=#5599aa gui=italic
 hi Pmenu guibg=grey10 guifg=hotpink
+hi Folded guibg=#171717 guifg=#3F7CB3 gui=italic
+hi Visual guibg=#3f7cb3 guifg=grey10 gui=bold
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
 hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
@@ -602,7 +598,7 @@ let g:airline_powerline_fonts = 1
 "]]]
 " Fugitive [[[
 
-nnoremap <leader>gs :silent Gstatus<cr>
+nnoremap <leader>gs :silent Git<cr>
 nnoremap <leader>gp :silent Gpull<cr>
 nnoremap <leader>gd :silent Gdiff<cr>
 nnoremap <leader>gw :silent Gwrite<cr>
@@ -624,38 +620,24 @@ else
 endif
 
 "]]]
-" Gundo [[[
-
-"map <F5> :GundoToggle<CR>
-
-"]]]
-" FZF [[[
-
-"let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPS='--reverse'
+" Telescope [[[
 
 set wildignore+=*\\tmp\\*,*.sw?,*.zip,*.settings,*.esb_diagram,*\\*sandbox\\*,*.classpath,*\\.meta\\*
 set wildignore+=.git,*.orig
 set wildignore+=*.exe,*.o,*.obj,*.dll,*.manifest
 set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
 
-command! -bang -nargs=* FindInRepo call fzf#run({ 'sink': 'e', 'source': 'git ls-files' })
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope git_files<CR>
+nnoremap <leader>fa :Telescope live_grep<CR>
+nnoremap <leader>fm :Telescope man_pages<CR>
+nnoremap <leader>fc :Telescope colorscheme<CR>
+nnoremap <leader>fb :Telescope git_branches<CR>
+nnoremap <leader>fh :Telescope command_history<CR>
+nnoremap <leader>fr :Telescope registers<CR>
+nnoremap <leader>ft :Telescope help_tags<CR>
 
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fr :FindInRepo<CR>
-nnoremap <leader>fa :Rg<CR>
-nnoremap <leader>fc :Commits<CR>
-nnoremap <leader>fb :BCommits<CR>
-nnoremap <leader>fh :History<CR>
-
-nnoremap <leader>t :Helptags<CR>
-
-"imap <c-l> <plug>(fzf-complete-line)
-
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
-" ]]]
+"]]]
 " Startify [[[
 
 "let g:startify_header=''
@@ -674,51 +656,6 @@ noremap <leader>vr :VimuxRunLastCommand<CR>
 noremap <leader>vi :VimuxInterruptRunner<CR>
 
 " ]]]
-" Vim-Session [[[
-
-let g:session_autosave='no'
-let g:session_autoload='no'
-
-" ]]]
-" vim-peekaboo [[[
-
-" Make register list wider than default
-let g:peekaboo_window='vert bo 75new'
-
-" Wait 1 second before showing registers
-let g:peekaboo_delay=1000
-
-" ]]]
-" vim-rainbow [[[
-
-let g:rainbow_active=1
-
-" ]]]
-" coc.vim [[[
-"
-"inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-"function! s:check_back_space() abort
-"    let col = col('.') - 1
-"    return !col || getline('.')[col - 1] =~# '\s'
-"endfunction
-"
-"inoremap <silent><expr> <c-space> coc#refresh()
-"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-"
-"function! s:show_documentation()
-"    if (index(['vim','help'], &filetype) >= 0)
-"        execute 'h ' . expand('<cword>')
-"    else
-"        call CocAction('doHover')
-"    endif
-"endfunction
-"
-" ]]]
 " vim-tmux-navigator [[[
 let g:tmux_navigator_no_mappings = 1
 
@@ -727,9 +664,6 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
-"]]]
-" auto-pairs [[[
-let g:AutoPairsFlyMode = 0
 "]]]
 " DiffConflicts [[[
     "map <leader>dd  :DiffConflicts<cr>
