@@ -85,6 +85,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'marko-cerovac/material.nvim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'whatsthatsmell/codesmell_dark.vim'
+Plug 'AckslD/nvim-neoclip.lua'
 
 call plug#end()
 
@@ -93,6 +94,8 @@ filetype plugin indent on
 lua << GITSIGNS
     require('gitsigns').setup()
     require'lspconfig'.vimls.setup { }
+    require('neoclip').setup()
+    require('telescope').load_extension('neoclip')
 GITSIGNS
 
 lua << NVIMVMP
@@ -489,6 +492,7 @@ set bg=dark
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
 hi String guifg=#5599aa gui=italic
+hi Pmenu guibg=grey10 guifg=hotpink
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
 hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
