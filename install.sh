@@ -20,6 +20,15 @@ else
     echo "done."
 fi
 
+# Neovim
+echo -n "Copying Neovim settings.."
+if [[ -d $HOME/.config/nvim ]]; then
+    echo "$HOME/.config/nvim already exists...skipping."
+else
+    ln -s "$HOME/dotfiles/config/nvim" "$HOME/.config/nvim"
+    echo "done."
+fi
+
 # prezto
 echo -n "Copying zprezto.."
 if [[ -d $HOME/.zprezto ]]; then
@@ -101,6 +110,7 @@ declare -a FILES_TO_SYMLINK=(
   'zsh/aliases_ssh.zsh'
   'git/gitconfig'
   'git/gitignore'
+  'config/nvim/init.vim'
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
