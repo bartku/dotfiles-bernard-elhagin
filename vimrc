@@ -372,6 +372,10 @@ function ScratchBufferize()
 endfu
 
 nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <cr>:normal gg<cr>
+
+" Map dot to repeat last edit over entire visual selection
+xmap . :normal .<CR>
+
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -625,8 +629,8 @@ let g:startify_change_to_vcs_root = 1
 " ]]]
 " Vimux [[[
 
-let g:VimuxOrientation="h"
-let g:VimuxHeight="35"
+let g:VimuxOrientation="v"
+let g:VimuxHeight="8"
 
 noremap <leader>vm :VimuxRunCommand("makeSpace.sh")<CR>
 noremap <leader>vc :VimuxCloseRunner<CR>
