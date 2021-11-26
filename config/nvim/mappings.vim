@@ -76,9 +76,6 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " lines
 " map <leader>f [I:let nr=input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-" Format XML file with xmllint.exe
-nnoremap =x :exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set filetype=xml<CR>
-
 " Easier movement to start and end of line
 noremap  H ^
 noremap  L $
@@ -156,3 +153,5 @@ nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
 
 " Edit file even if it doesn't exist
 nnoremap gf :edit <cfile><cr>
+
+nnoremap <leader>pl :edit ~/.config/nvim/plugins.vim<CR>

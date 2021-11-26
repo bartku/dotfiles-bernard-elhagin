@@ -67,6 +67,7 @@ source ~/.config/nvim/plugins/nvim-lsp-installer.vim
 source ~/.config/nvim/plugins/NrrwRgn.vim
 source ~/.config/nvim/plugins/codesmell_dark.vim.vim
 source ~/.config/nvim/plugins/nvim-neoclip.lua.vim
+source ~/.config/nvim/plugins/highilight_word.vim
 
 call plug#end()
 
