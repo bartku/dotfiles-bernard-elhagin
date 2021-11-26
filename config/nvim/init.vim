@@ -231,7 +231,7 @@ if has('persistent_undo')
         call mkdir($HOME . '/tmp/.NVIM_UNDO_FILES', "p")
     endif
 
-    set undodir=$HOME/tmp/.VIM_UNDO_FILES
+    set undodir=$HOME/tmp/.NVIM_UNDO_FILES
 
     " Save a lot of back-history...
     set undolevels=5000
