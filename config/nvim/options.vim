@@ -1,3 +1,9 @@
+" Speed up start
+if has('python3')
+endif
+
+filetype off
+
 set history=3000
 set encoding=utf-8
 set noshowmode

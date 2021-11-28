@@ -20,14 +20,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 export VIM=$HOME/.vim
-
-if [[ -d /usr/share/vim/vim82 ]]; then
-    export VIMRUNTIME=/usr/share/vim/vim82
-elif [[ -d /usr/share/vim/vim74 ]]; then
-    export VIMRUNTIME=/usr/share/vim/vim74
-else
-    echo "Can't find vim runtime folder."
-fi
+export VIMRUNTIME=/usr/share/nvim/runtime
 
 [[ -f $HOME/.proxy.zsh ]] && source $HOME/.proxy.zsh
 

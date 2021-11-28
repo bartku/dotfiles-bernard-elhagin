@@ -133,16 +133,16 @@ onoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>
 
 xnoremap <silent> iy :<C-U>execute "normal!?^---\r:nohlsearch\rjV/^---\rk"<cr>
 xnoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>
+
 " Go into mergetool mode
-"map <leader>d :call DiffToolMode()<CR>
+map <leader>d :call DiffToolMode()<CR>
 
-"function! DiffToolMode()
-    "set nohls
-nnoremap <leader>d :let @/='======='<CR>ggn
-"endfunction
-
-nnoremap <c-down> ddd/>>>>>><cr>dd?<<<<<<<cr>dd:let @/='======='<CR>
-nnoremap <c-up> ddd?<<<<<<<cr>/>>>>>>><cr>dd:let @/='======='<CR>
+function! DiffToolMode()
+    set nohls
+    nnoremap <leader>d :let @/='======='<CR>ggn
+    nnoremap <c-down> ddd/>>>>>><cr>dd?<<<<<<<cr>dd:let @/='======='<CR>
+    nnoremap <c-up> ddd?<<<<<<<cr>/>>>>>>><cr>dd:let @/='======='<CR>
+endfunction
 
 inoremap <c-l> <right>
 inoremap <c-h> <left>
@@ -154,4 +154,9 @@ nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
 " Edit file even if it doesn't exist
 nnoremap gf :edit <cfile><cr>
 
-nnoremap <leader>pl :edit ~/.config/nvim/plugins.vim<CR>
+nnoremap <leader>oo :edit ~/.config/nvim/options.vim<CR>
+nnoremap <leader>os :edit ~/.config/nvim/settings.vim<CR>
+nnoremap <leader>of :edit ~/.config/nvim/filetypes.vim<CR>
+nnoremap <leader>om :edit ~/.config/nvim/mappings.vim<CR>
+nnoremap <leader>op :edit ~/.config/nvim/plugins.vim<CR>
+nnoremap <leader>ot :edit ~/.config/nvim/theme.vim<CR>

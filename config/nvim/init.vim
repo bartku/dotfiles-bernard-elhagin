@@ -3,14 +3,6 @@
 " Author: Bernard El-Hagin <bernard.elhagin@gmail.com>
 " http://github.com/bernard-elhagin/dotfiles
 "
-set nocompatible
-
-" Speed up start
-if has('python3')
-endif
-
-filetype off
-
 source ~/.config/nvim/options.vim     " Basic Options
 source ~/.config/nvim/settings.vim    " Settings
 source ~/.config/nvim/filetypes.vim   " Settings for specific filetypes

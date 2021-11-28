@@ -6,12 +6,12 @@ alias ys='yay -S'
 alias pfiles='pacman -Fl'
 
 alias lll='ls -crtl'
-alias zs='vim $HOME/.zshrc'
-alias zpre='vim $HOME/.zpreztorc'
+alias zs='nvim $HOME/.zshrc'
+alias zpre='nvim $HOME/.zpreztorc'
 alias github='git clone https://github.com/'
 
 alias x='exit'
-alias v='vim $(fzf)'
+alias v='nvim $(fzf)'
 
 alias gs='git status'
 alias gc='git commit'

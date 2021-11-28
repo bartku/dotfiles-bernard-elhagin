@@ -1,3 +1,5 @@
+" Setting based on file type
+
 " Diff [[[
 
 " This is from https://github.com/sgeb/vim-diff-fold/
