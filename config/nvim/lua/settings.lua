@@ -1,66 +1,68 @@
-vim.opt.history = 5000
-vim.opt.encoding = 'utf-8'
-vim.opt.showmode = false
-vim.opt.scrolloff = 8
-vim.opt.wildmenu = true
-vim.opt.wildmode = 'full'
-vim.opt.wildoptions = { 'pum', 'tagfile' }
-vim.opt.ruler = true
-vim.opt.cmdheight = 2
-vim.opt.backspace = { 'indent', 'eol', 'start' }
-vim.opt.incsearch = true
-vim.opt.magic = true
-vim.opt.showmatch = true
-vim.opt.errorbells = false
-vim.opt.visualbell = false
-vim.opt.lazyredraw = true
-vim.opt.ignorecase = true
-vim.opt.hlsearch = true
-vim.opt.smartcase = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.gdefault = true
-vim.opt.backup = false
-vim.opt.swapfile = false
-vim.opt.autoread = true
-vim.opt.fileformats = { 'unix', 'dos' }
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.smarttab = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.wrap = false
-vim.opt.laststatus = 2
-vim.opt.path = { '.', '/usr/include', '/home/bertold/Devel/Projects/**' }
-vim.opt.suffixesadd = { '.lua', '.xml' }
-vim.opt.autochdir = true
-vim.opt.synmaxcol = 200
-vim.opt.foldcolumn = '0'
-vim.opt.diffopt = { 'internal', 'filler', 'context:3', 'indent-heuristic', 'algorithm:patience' }
-vim.opt.clipboard = 'unnamed'
-vim.opt.hidden = true
-vim.opt.updatetime = 1000
-vim.opt.timeoutlen = 300
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.pumheight = 12
-vim.opt.termguicolors = true
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.foldlevelstart = 9999
-vim.opt.foldmethod = 'marker'
-vim.opt.foldmarker = '[[[,]]]'
+local o = vim.opt
 
-vim.opt.fillchars = 'diff:∙'              -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-vim.opt.fillchars:append('fold:·')        -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-vim.opt.fillchars:append('vert:┃')        -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+o.history = 5000
+o.encoding = 'utf-8'
+o.showmode = false
+o.scrolloff = 8
+o.wildmenu = true
+o.wildmode = 'full'
+o.wildoptions = { 'pum', 'tagfile' }
+o.ruler = true
+o.cmdheight = 2
+o.backspace = { 'indent', 'eol', 'start' }
+o.incsearch = true
+o.magic = true
+o.showmatch = true
+o.errorbells = false
+o.visualbell = false
+o.lazyredraw = true
+o.ignorecase = true
+o.hlsearch = true
+o.smartcase = true
+o.number = true
+o.relativenumber = true
+o.gdefault = true
+o.backup = false
+o.swapfile = false
+o.autoread = true
+o.fileformats = { 'unix', 'dos' }
+o.expandtab = true
+o.shiftwidth = 4
+o.tabstop = 4
+o.smarttab = true
+o.autoindent = true
+o.smartindent = true
+o.wrap = false
+o.laststatus = 2
+o.path = { '.', '/usr/include', '/home/bertold/Devel/Projects/**' }
+o.suffixesadd = { '.lua', '.xml' }
+o.autochdir = true
+o.synmaxcol = 200
+o.foldcolumn = '0'
+o.diffopt = { 'internal', 'filler', 'context:3', 'indent-heuristic', 'algorithm:patience' }
+o.clipboard = 'unnamed'
+o.hidden = true
+o.updatetime = 1000
+o.timeoutlen = 300
+o.splitbelow = true
+o.splitright = true
+o.pumheight = 12
+o.termguicolors = true
+o.completeopt = { 'menu', 'menuone', 'noselect' }
+o.foldlevelstart = 9999
+o.foldmethod = 'marker'
+o.foldmarker = '[[[,]]]'
 
-vim.opt.list = true
-vim.opt.listchars = 'nbsp:⦸'              -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
-vim.opt.listchars:append('tab:▷-')        -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
-vim.opt.listchars:append('extends:»')     -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-vim.opt.listchars:append('precedes:«')    -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-vim.opt.listchars:append('trail:•')       -- BULLET (U+2022, UTF-8: E2 80 A2)
+o.fillchars = 'diff:∙'              -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
+o.fillchars:append('fold:·')        -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
+o.fillchars:append('vert:┃')        -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+
+o.list = true
+o.listchars = 'nbsp:⦸'              -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
+o.listchars:append('tab:▷-')        -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
+o.listchars:append('extends:»')     -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+o.listchars:append('precedes:«')    -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+o.listchars:append('trail:•')       -- BULLET (U+2022, UTF-8: E2 80 A2)
 
 vim.cmd [[
   if !isdirectory('/home/bertold/tmp/.NVIM_UNDO_FILES')

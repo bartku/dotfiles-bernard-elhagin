@@ -1,55 +1,86 @@
-imap jk <ESC>
-vnoremap jk <ESC>
-cnoremap jk <C-U> <ESC>
+local api = vim.api
 
-let mapleader=' '
-let maplocalleader='\\'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
-nnoremap ; :
-nnoremap : ;
+api.nvim_set_keymap('i', 'jk', '<ESC>', { noremap = false })
+api.nvim_set_keymap('v', 'jk', '<ESC>', { noremap = true })
+api.nvim_set_keymap('c', 'jk', '<C-U> <ESC>', { noremap = true })
 
-nnoremap <leader>s :w<CR>
+api.nvim_set_keymap('n', ';', ':', { noremap = true })
+api.nvim_set_keymap('n', ':', ';', { noremap = true })
 
-nnoremap <leader>V :tabedit $MYVIMRC<CR>
+api.nvim_set_keymap('n', '<leader>s', ':w<CR>', { noremap = true })
 
-" Paste the contents of clipboard
-nnoremap <C-Space> "*p
+api.nvim_set_keymap('n', '<leader>V', ':tabedit $MYVIMRC<CR>', { noremap = true })
+api.nvim_set_keymap('n', '<C-Space>', '"*p', { noremap = true })                 -- paste the contents of the clipboard
+api.nvim_set_keymap('n', '<CS-Space>', 'gg"*yG:q!<CR>', { noremap = true })      -- copy whole buffer to clipboard and quit
 
-" Copy whole file to clipboard and quit Vim
-nnoremap <CS-Space> gg"*yG:q!<CR>
+api.nvim_set_keymap('n', '<leader>r', ':!<UP><CR>', { noremap = true })
+api.nvim_set_keymap('n', '<leader>p', ':set paste!<CR>', { noremap = true })
 
-" Rerun last shell command
-nnoremap <leader>r :!<UP><CR>
+api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
+api.nvim_set_keymap('n', '<C-k>',' <C-w>k', { noremap = true })
+api.nvim_set_keymap('n', '<C-l>',' <C-w>l', { noremap = true })
+api.nvim_set_keymap('n', '<leader>j',' <C-w>j', { noremap = true })
+api.nvim_set_keymap('n', '<leader>k',' <C-w>k', { noremap = true })
+api.nvim_set_keymap('n', '<leader>l',' <C-w>l', { noremap = true })
+api.nvim_set_keymap('n', '<leader>h',' <C-w>h', { noremap = true })
+api.nvim_set_keymap('n', '<leader>x',' <C-w>c', { noremap = true })
+api.nvim_set_keymap('n', '<leader>o',' <C-w>o', { noremap = true })
+api.nvim_set_keymap('n', '<leader>_',' <C-w>_', { noremap = true })
 
-" Toggle paste mode
-nnoremap <leader>p :set paste!<CR>
+api.nvim_set_keymap('n', '<leader>q',' :QuickScopeToggle<CR>', { noremap = true })
 
-" Mappings for manipulating and moving around splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>l <C-w>l
-nnoremap <leader>h <C-w>h
-nnoremap <leader>x <C-w>c
-nnoremap <leader>o <C-w>o
-nnoremap <leader>_ <C-w>_
+api.nvim_set_keymap('n', '<F12>',' :cd %:h<CR>', { noremap = true })
 
-nnoremap <leader>q :QuickScopeToggle<CR>
+api.nvim_set_keymap('n', '<F7>',' :tabprev<CR>', { noremap = true })
 
-" Set CWD to current file's PWD
-noremap <F12> :cd %:h<CR>
+api.nvim_set_keymap('n', '<leader>z',' za', { noremap = true })
+api.nvim_set_keymap('v', '<leader>z',' za', { noremap = true })
 
-" Switch to previous buffer
-noremap <F2> :b#<CR>
+api.nvim_set_keymap('n', 'H','^',  { noremap = true })
+api.nvim_set_keymap('n', 'L','$',  { noremap = true })
+api.nvim_set_keymap('v', 'L','g_', { noremap = true })
 
-" Swap two words (tn - current with next word; tp - current with previous)
-nnoremap <silent> <leader>tn "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
-nnoremap <silent> <leader>tp "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+api.nvim_set_keymap('i', '{{', '{' .. '<enter>' .. '}<ESC>O', { noremap = true })
+api.nvim_set_keymap('i', ',,', ',<CR>', { noremap = true })
 
-nnoremap <F7> :tabprev<CR>
+api.nvim_set_keymap('n', 'ZQ',' ZZ', { noremap = true })
+api.nvim_set_keymap('n', 'ZZ',' ZQ', { noremap = true })
+
+api.nvim_set_keymap('n', 'Q',' <nop>', { noremap = true })
+
+api.nvim_set_keymap('c', '<C-a>', '<Home>', { noremap = true })
+api.nvim_set_keymap('c', '<C-e>', '<End>',  { noremap = true })
+
+api.nvim_set_keymap('n', 'Y','y$', { noremap = true })
+
+api.nvim_set_keymap('i', '<c-l>', '<right>', { noremap = true })
+api.nvim_set_keymap('i', '<c-h>', '<left>',  { noremap = true })
+api.nvim_set_keymap('i', '<c-j>', '<ESC>A',  { noremap = true })
+api.nvim_set_keymap('i', '<c-o>', '<ESC>I',  { noremap = true })
+
+api.nvim_set_keymap('n', 'gf',' :edit <cfile><cr>', { noremap = true }) -- edit file even if it doesn't exist
+
+api.nvim_set_keymap('n', '<leader>os', ':edit ~/.config/nvim/lua/settings.lua<CR>',  { noremap = true })
+api.nvim_set_keymap('n', '<leader>of', ':edit ~/.config/nvim/lua/filetypes.lua<CR>', { noremap = true })
+api.nvim_set_keymap('n', '<leader>om', ':edit ~/.config/nvim/lua/mappings.lua<CR>',  { noremap = true })
+api.nvim_set_keymap('n', '<leader>op', ':edit ~/.config/nvim/lua/plugins.lua<CR>',   { noremap = true })
+api.nvim_set_keymap('n', '<leader>ot', ':edit ~/.config/nvim/lua/theme.lua<CR>',     { noremap = true })
+
+-- Swap two words (tn - current with next word; tp - current with previous)
+--api.nvim_set_keymap('n', '<leader>tn', '"_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>',    { noremap = true, silent = true })
+--api.nvim_set_keymap('n', '<leader>tp', '"_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>', { noremap = true, silent = true })
+
+-- Show what highlight group symbol/word under cursor belongs to
+--api.nvim_set_keymap('n', '<F10>' ':echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . \'> trans<\' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>', { noremap = true })
+
+-- Remove trailing whitespace
+--api.nvim_set_keymap('n', '<leader>w',':%s/\s+$//<CR>', { noremap = true })
+
+--[[
 
 " Fold all, unfold all
 nnoremap <leader>e :call Fold()<CR>
@@ -63,49 +94,9 @@ function! Fold()
     endif
 endfunction
 
-" Space-z to toggle folds.
-nnoremap <leader>z za
-vnoremap <leader>z za
-
-" Toggle hls and matching with the <leader>N utility
-"map <CR> :set hls!<CR>
-nnoremap <BS> :call clearmatches()<CR>
-
-" Show what highlight group symbol/word under cursor belongs to
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
-
-" Find all lines with word under cursor and give option to jump to one of the
-" lines
-" map <leader>f [I:let nr=input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
-" Easier movement to start and end of line
-noremap  H ^
-noremap  L $
-vnoremap L g_
-
-" nnoremap / /\v
-" vnoremap / /\v
-
-"nnoremap ' `
-"nnoremap ` '
-
-imap {{ {}<ESC>O
-imap ,, ,<CR>
-
-nnoremap ZQ ZZ
-nnoremap ZZ ZQ
-
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 nnoremap <leader>b :Telescope buffers<CR>
-
-" Avoid unintentional switch to Ex mode.
-nnoremap Q <nop>
-
-noremap Y y$
-
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
 
 " Toggle numbers for copying text without number column
 nnoremap <leader>n :call LineNumbers()<CR>
@@ -120,7 +111,6 @@ endfunction
 nnoremap <leader>Q :g/^#\\|\(^$\)/d<CR>
 
 " Remove trailing whitespace
-nnoremap <leader>w :%s/\s\+$//<CR>
 
 " execute "!perl /home/bertold/Devel/Projects/wso2tools/add_artifact.pl " . system("git rev-parse --show-toplevel | tr -d '\\n'")
 
@@ -147,17 +137,4 @@ function! DiffToolMode()
     nnoremap <c-up> ddd?<<<<<<<cr>/>>>>>>><cr>dd:let @/='======='<CR>
 endfunction
 
-inoremap <c-l> <right>
-inoremap <c-h> <left>
-inoremap <c-j> <ESC>A
-inoremap <c-o> <ESC>I
-
-" Edit file even if it doesn't exist
-nnoremap gf :edit <cfile><cr>
-
-nnoremap <leader>oo :edit ~/.config/nvim/options.vim<CR>
-nnoremap <leader>os :edit ~/.config/nvim/settings.vim<CR>
-nnoremap <leader>of :edit ~/.config/nvim/filetypes.vim<CR>
-nnoremap <leader>om :edit ~/.config/nvim/mappings.vim<CR>
-nnoremap <leader>op :edit ~/.config/nvim/plugins.vim<CR>
-nnoremap <leader>ot :edit ~/.config/nvim/theme.vim<CR>
+]]
