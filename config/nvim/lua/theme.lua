@@ -1,3 +1,4 @@
+vim.cmd [[
 colorscheme codesmell_dark
 
 " Overrides
@@ -10,5 +11,6 @@ highlight   Visual                guibg=#3f7cb3          guifg=grey10         gu
 highlight   QuickScopePrimary     cterm=underline,bold   gui=underline,bold   ctermfg=red    guifg=red
 highlight   QuickScopeSecondary   cterm=underline,bold   gui=underline,bold   ctermfg=cyan   guifg=cyan
 highlight   MatchParen            guibg=bg               guifg=red            gui=bold
+]]
 
-let g:airline_theme='papercolor'
+vim.g.airline_theme='papercolor'

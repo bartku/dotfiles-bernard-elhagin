@@ -6,5 +6,5 @@
 require('settings')   -- General settings
 --require('filetypes')  -- Settings for specific filetypes
 require('mappings')   -- Mappings
---require('plugins')    -- Initialize plugins
---require('theme')      -- Color settings
+require('plugins')    -- Initialize plugins
+require('theme')      -- Color settings

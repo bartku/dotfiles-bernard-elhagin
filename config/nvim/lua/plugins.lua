@@ -1,3 +1,27 @@
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local packer_install_dir = '/home/bertold/.local/share/nvim/site/pack/packer/start/packer.nvim'
+
+local plug_url_format = 'https://github.com/%s'
+
+local packer_repo = string.format(plug_url_format, 'wbthomason/packer.nvim')
+local install_cmd = string.format('10split |term git clone --depth=1 %s %s', packer_repo, packer_install_dir)
+
+if fn.empty(fn.glob(packer_install_dir)) > 0 then
+  vim.api.nvim_echo({{'Installing packer.nvim', 'Type'}}, true, {})
+  execute(install_cmd)
+  execute 'packadd packer.nvim'
+end
+
+vim.cmd [[packadd packer.nvim]]
+
+return require('packer').startup(function()
+    use 'wbthomason/packer.nvim'
+    use 'whatsthatsmell/codesmell_dark.vim'
+end)
+
+--[[
 " Download vim-plug if necessary
 let data_dir = '~/.local/share/nvim/site'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -65,10 +89,10 @@ source ~/.config/nvim/plugins/cmp-path.vim
 source ~/.config/nvim/plugins/cmp-cmdline.vim
 source ~/.config/nvim/plugins/nvim-lsp-installer.vim
 source ~/.config/nvim/plugins/NrrwRgn.vim
-source ~/.config/nvim/plugins/codesmell_dark.vim.vim
 source ~/.config/nvim/plugins/nvim-neoclip.lua.vim
 source ~/.config/nvim/plugins/highilight_word.vim
 source ~/.config/nvim/plugins/rest.nvim.vim
+source ~/.config/nvim/plugins/codesmell_dark.vim.lua
 
 call plug#end()
 
@@ -81,3 +105,4 @@ if filereadable('/usr/bin/python3')
   let g:python3_host_prog='/usr/bin/python3'
   let g:pymode_python='python3'
 endif
+]]
