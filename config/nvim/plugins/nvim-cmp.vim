@@ -2,7 +2,7 @@ Plug 'hrsh7th/nvim-cmp'
 
 function NvimCmpSetup()
 lua << NVIMCMP
-      -- Setup nvim-cmp.
+  -- Setup nvim-cmp.
   local cmp = require'cmp'
 
   cmp.setup({

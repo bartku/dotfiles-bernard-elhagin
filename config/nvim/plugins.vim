@@ -63,6 +63,7 @@ source ~/.config/nvim/plugins/cmp-buffer.vim
 source ~/.config/nvim/plugins/cmp-nvim-lsp.vim
 source ~/.config/nvim/plugins/cmp-path.vim
 source ~/.config/nvim/plugins/cmp-cmdline.vim
+source ~/.config/nvim/plugins/cmp-nvim-ultisnips.vim
 source ~/.config/nvim/plugins/nvim-lsp-installer.vim
 source ~/.config/nvim/plugins/NrrwRgn.vim
 source ~/.config/nvim/plugins/codesmell_dark.vim.vim
