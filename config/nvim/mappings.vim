@@ -63,7 +63,9 @@ function! Fold()
     endif
 endfunction
 
-"map 0 ^
+" Space-z to toggle folds.
+nnoremap <leader>z za
+vnoremap <leader>z za
 
 " Toggle hls and matching with the <leader>N utility
 "map <CR> :set hls!<CR>
@@ -105,6 +107,7 @@ noremap Y y$
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+" Toggle numbers for copying text without number column
 nnoremap <leader>n :call LineNumbers()<CR>
 
 function! LineNumbers()
@@ -148,8 +151,6 @@ inoremap <c-l> <right>
 inoremap <c-h> <left>
 inoremap <c-j> <ESC>A
 inoremap <c-o> <ESC>I
-
-nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
 
 " Edit file even if it doesn't exist
 nnoremap gf :edit <cfile><cr>

@@ -38,6 +38,9 @@ au BufEnter,BufRead *.xml if search('nashornJs', 'nw') | setlocal ft=javascript 
 " Format XML files with xmllint
 nnoremap =x :exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set filetype=xml<CR>
 
+" Go to a sequence file in a WSO2 project
+nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
+
 "]]]
 " XSLT[[[
 
