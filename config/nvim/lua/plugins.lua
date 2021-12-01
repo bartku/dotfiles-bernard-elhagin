@@ -17,6 +17,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
+    --use {
     use 'wbthomason/packer.nvim'
 
     use 'rafi/awesome-vim-colorschemes'
@@ -46,6 +47,8 @@ return require('packer').startup(function()
     use 'mhinz/vim-startify'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'honza/vim-snippets'
+    use 'romainl/vim-cool'
+    --end
 
     use { 'nvim-telescope/telescope.nvim',
 
@@ -205,14 +208,14 @@ return require('packer').startup(function()
         end
     }
 
-    use { 'ggandor/lightspeed.nvim',
+    use { 'phaazon/hop.nvim',
 
         config = function()
-            require('lightspeed').setup{}
+            require('hop').setup { keys = 'asdfjkl;' }
 
             after = {
-                vim.api.nvim_set_keymap('n', 'm', '<Plug>Lightspeed_s',  { noremap = true }),
-                vim.api.nvim_set_keymap('n', 'M', '<Plug>Lightspeed_S',  { noremap = true }),
+                vim.api.nvim_set_keymap('n', 'm', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR,  current_line_only = false})<CR>",  { noremap = true }),
+                vim.api.nvim_set_keymap('n', 'M', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false})<CR>",  { noremap = true })
             }
         end
     }
@@ -400,7 +403,6 @@ let g:arduino_dir = '/home/bertold/bin/arduino-1.8.15'
 let g:arduino_home_dir = '/home/bertold/.arduino15'
 let g:arduino_args = '--verbose-upload'
 
-Plug 'romainl/vim-cool'
 Plug 'idbrii/vim-endoscope'
 Plug 'tpope/vim-fugitive'
 
