@@ -187,6 +187,12 @@ return require('packer').startup(function()
                     }
                 }
             }
+
+            vim.cmd [[
+                augroup LUA
+                    autocmd BufEnter plugins.lua :LspStop<CR>
+                augroup END
+            ]]
         end
     }
 
@@ -211,11 +217,11 @@ return require('packer').startup(function()
     use { 'phaazon/hop.nvim',
 
         config = function()
-            require('hop').setup { keys = 'asdfjkl;' }
+            require('hop').setup { keys = 'asdfjkl;weio' }
 
             after = {
                 vim.api.nvim_set_keymap('n', 'm', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR,  current_line_only = false})<CR>",  { noremap = true }),
-                vim.api.nvim_set_keymap('n', 'M', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false})<CR>",  { noremap = true })
+                vim.api.nvim_set_keymap('n', 'M', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false})<CR>",  { noremap = true }),
             }
         end
     }
