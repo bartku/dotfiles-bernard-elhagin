@@ -12,7 +12,7 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 source ~/.config/nvim/plugins/vim-colorschemes.vim
 source ~/.config/nvim/plugins/ultisnips.vim
 source ~/.config/nvim/plugins/vim-snippets.vim
-source ~/.config/nvim/plugins/vim-easymotion.vim
+"source ~/.config/nvim/plugins/vim-easymotion.vim
 source ~/.config/nvim/plugins/vim-airline.vim
 source ~/.config/nvim/plugins/vim-fugitive.vim
 source ~/.config/nvim/plugins/vim-vinegar.vim
@@ -70,6 +70,7 @@ source ~/.config/nvim/plugins/codesmell_dark.vim.vim
 source ~/.config/nvim/plugins/nvim-neoclip.lua.vim
 source ~/.config/nvim/plugins/highilight_word.vim
 source ~/.config/nvim/plugins/rest.nvim.vim
+source ~/.config/nvim/plugins/hop.nvim.vim
 
 call plug#end()
 
