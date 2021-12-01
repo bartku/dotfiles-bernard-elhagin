@@ -64,6 +64,8 @@ o.listchars:append('extends:»')     -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MA
 o.listchars:append('precedes:«')    -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 o.listchars:append('trail:•')       -- BULLET (U+2022, UTF-8: E2 80 A2)
 
+o.wildignore = { '*\\tmp\\*', '*.sw?', '*.zip', '*.settings', '*.esb_diagram', '*\\*sandbox\\*', '*.classpath', '*\\.meta\\*', '.git', '*.orig', '*.exe', '*.o', '*.obj', '*.dll', '*.manifest', '*.jpg', '*.jpeg', '*.bmp', '*.gif', '*.png' }
+
 vim.cmd [[
   if !isdirectory('/home/bertold/tmp/.NVIM_UNDO_FILES')
       call mkdir('/home/bertold/tmp/.NVIM_UNDO_FILES', "p")

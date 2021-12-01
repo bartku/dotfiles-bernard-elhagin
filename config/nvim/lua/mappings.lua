@@ -31,7 +31,7 @@ api.nvim_set_keymap('n', '<leader>x',' <C-w>c', { noremap = true })
 api.nvim_set_keymap('n', '<leader>o',' <C-w>o', { noremap = true })
 api.nvim_set_keymap('n', '<leader>_',' <C-w>_', { noremap = true })
 
-api.nvim_set_keymap('n', '<leader>q',' :QuickScopeToggle<CR>', { noremap = true })
+api.nvim_set_keymap('n', '<leader>q',':QuickScopeToggle<CR>', { noremap = true })
 
 api.nvim_set_keymap('n', '<F12>',' :cd %:h<CR>', { noremap = true })
 
