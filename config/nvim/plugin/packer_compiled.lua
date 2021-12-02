@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -114,6 +114,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-ultisnips"] = {
+    config = { "\27LJ\1\2›\2\0\0\a\0\v\2+4\0\0\0007\0\1\0007\0\2\0'\1\0\0%\2\3\0>\0\3\2\a\0\4\0T\0\2€)\0\1\0H\0\2\0004\0\5\0004\1\0\0007\1\1\0017\1\6\1'\2\0\0>\1\2\0=\0\0\3\b\1\0\0T\2\20€4\2\0\0007\2\1\0027\2\a\2'\3\0\0\21\4\1\0\16\5\0\0)\6\2\0>\2\5\0028\2\1\2\16\3\2\0007\2\b\2\16\4\1\0\16\5\1\0>\2\4\2\16\3\2\0007\2\t\2%\4\n\0>\2\3\2\n\2\0\0T\2\2€)\2\1\0T\3\1€)\2\2\0H\2\2\0\a%s\nmatch\bsub\23nvim_buf_get_lines\24nvim_win_get_cursor\vunpack\vprompt\fbuftype\24nvim_buf_get_option\bapi\bvim\0\2r\0\1\a\0\5\0\0154\1\0\0007\1\1\0017\1\2\0014\2\0\0007\2\1\0027\2\3\2\16\3\0\0)\4\2\0)\5\2\0)\6\2\0>\2\5\2%\3\4\0)\4\2\0>\1\4\1G\0\1\0\6n\27nvim_replace_termcodes\18nvim_feedkeys\bapi\bvim:\0\1\3\0\4\0\0064\1\0\0007\1\1\0017\1\2\0017\2\3\0>\1\2\1G\0\1\0\tbody\19UltiSnips#Anon\afn\bvimé\1\0\1\3\3\a\1\29+\1\0\0007\1\0\1>\1\1\2\15\0\1\0T\2\r€4\1\1\0007\1\2\0017\1\3\1>\1\1\2\t\1\0\0T\1\3€+\1\1\0%\2\4\0@\1\2\0+\1\0\0007\1\5\1>\1\1\1T\1\n€+\1\2\0>\1\1\2\15\0\1\0T\2\4€+\1\1\0%\2\6\0>\1\2\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\0À\2À\1À\f<Space>\21select_next_item(<C-R>=UltiSnips#ExpandSnippet()<CR>\31UltiSnips#CanExpandSnippet\afn\bvim\fvisible\2ü\2\0\1\3\3\n\1-+\1\0\0007\1\0\1>\1\1\2\v\1\0\0T\1\n€4\1\1\0007\1\2\0017\1\3\1>\1\1\2\t\1\0\0T\1\4€+\1\1\0%\2\4\0>\1\2\1T\1\29€4\1\1\0007\1\2\0017\1\5\1>\1\1\2\t\1\0\0T\1\4€+\1\1\0%\2\6\0>\1\2\1T\1\19€+\1\0\0007\1\a\1>\1\1\2\15\0\1\0T\2\4€+\1\0\0007\1\b\1>\1\1\1T\1\n€+\1\2\0>\1\1\2\15\0\1\0T\2\4€+\1\1\0%\2\t\0>\1\2\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\0À\2À\1À\n<Tab>\21select_next_item\fvisible,<ESC>:call UltiSnips#JumpForwards()<CR>\30UltiSnips#CanJumpForwards(<C-R>=UltiSnips#ExpandSnippet()<CR>\31UltiSnips#CanExpandSnippet\afn\bvim\23get_selected_entry\2È\1\0\1\3\2\6\1\0224\1\0\0007\1\1\0017\1\2\1>\1\1\2\t\1\0\0T\1\4€+\1\0\0%\2\3\0>\1\2\1T\1\v€+\1\1\0007\1\4\1>\1\1\2\15\0\1\0T\2\4€+\1\1\0007\1\5\1>\1\1\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\2À\0À\21select_prev_item\fvisible-<ESC>:call UltiSnips#JumpBackwards()<CR>\31UltiSnips#CanJumpBackwards\afn\bvim\2›\2\1\0\t\0\23\0#4\0\0\0%\1\1\0>\0\2\0021\1\2\0001\2\3\0007\3\4\0003\4\b\0003\5\6\0001\6\5\0:\6\a\5:\5\t\0042\5\3\0003\6\n\0;\6\1\5:\5\v\0043\5\15\0007\6\f\0001\a\r\0003\b\14\0>\6\3\2:\6\16\0057\6\f\0001\a\17\0003\b\18\0>\6\3\2:\6\19\0057\6\f\0001\a\20\0003\b\21\0>\6\3\2:\6\22\5:\5\f\4>\3\2\0010\0\0€G\0\1\0\f<S-Tab>\1\4\0\0\6i\6s\6c\0\n<Tab>\1\4\0\0\6i\6s\6c\0\14<C-Space>\1\0\0\1\4\0\0\6i\6s\6c\0\fmapping\fsources\1\0\1\tname\14ultisnips\fsnippet\1\0\0\vexpand\1\0\0\0\nsetup\0\0\bcmp\frequire\0" },
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
   },
   ["cmp-path"] = {
     loaded = true,
@@ -201,6 +207,12 @@ _G.packer_plugins = {
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
+  ["nvim-ts-autotag"] = {
+    config = { "\27LJ\1\2‰\1\0\0\4\0\b\0\v4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\6\0003\2\3\0003\3\4\0:\3\5\2:\2\a\1>\0\2\1G\0\1\0\fautotag\1\0\0\14filetypes\1\4\0\0\thtml\bxml\15javascript\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0" },
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -227,6 +239,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["quick-scope"] = {
+    config = { "\27LJ\1\2+\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\0\0:\1\2\0G\0\1\0\14qs_enable\6g\bvim\0" },
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/quick-scope",
     url = "https://github.com/unblevable/quick-scope"
@@ -242,7 +255,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
-    config = { '\27LJ\1\2å\6\0\0\6\0#\1Y4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0012\0\n\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\a\0%\4\b\0003\5\t\0>\1\5\2;\1\1\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\n\0%\4\v\0003\5\f\0>\1\5\2;\1\2\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\r\0%\4\14\0003\5\15\0>\1\5\2;\1\3\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\16\0%\4\17\0003\5\18\0>\1\5\2;\1\4\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\19\0%\4\20\0003\5\21\0>\1\5\2;\1\5\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\22\0%\4\23\0003\5\24\0>\1\5\2;\1\6\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\25\0%\4\26\0003\5\27\0>\1\5\2;\1\a\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\28\0%\4\29\0003\5\30\0>\1\5\2;\1\b\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\31\0%\4 \0003\5!\0>\1\5\0<\1\0\0005\0"\0G\0\1\0\nafter\1\0\1\fnoremap\2\29:Telescope help_tags<CR>\15<leader>ft\1\0\1\fnoremap\2\29:Telescope registers<CR>\15<leader>fr\1\0\1\fnoremap\2#:Telescope command_history<CR>\15<leader>fh\1\0\1\fnoremap\2 :Telescope git_branches<CR>\15<leader>fb\1\0\1\fnoremap\2\31:Telescope colorscheme<CR>\15<leader>fc\1\0\1\fnoremap\2\29:Telescope man_pages<CR>\15<leader>fm\1\0\1\fnoremap\2\29:Telescope live_grep<CR>\15<leader>fa\1\0\1\fnoremap\2\29:Telescope git_files<CR>\15<leader>fg\1\0\1\fnoremap\2\30:Telescope find_files<CR>\15<leader>ff\6n\20nvim_set_keymap\bapi\bvim\nsetup\14telescope\frequire\19€€À™\4\0' },
+    config = { '\27LJ\1\2±\a\0\0\6\0&\1b4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0012\0\v\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\a\0%\4\b\0003\5\t\0>\1\5\2;\1\1\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\n\0%\4\v\0003\5\f\0>\1\5\2;\1\2\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\r\0%\4\14\0003\5\15\0>\1\5\2;\1\3\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\16\0%\4\17\0003\5\18\0>\1\5\2;\1\4\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\19\0%\4\20\0003\5\21\0>\1\5\2;\1\5\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\22\0%\4\23\0003\5\24\0>\1\5\2;\1\6\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\25\0%\4\26\0003\5\27\0>\1\5\2;\1\a\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\28\0%\4\29\0003\5\30\0>\1\5\2;\1\b\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\31\0%\4 \0003\5!\0>\1\5\2;\1\t\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3"\0%\4#\0003\5$\0>\1\5\0<\1\0\0005\0%\0G\0\1\0\nafter\1\0\1\fnoremap\2\29:Telescope help_tags<CR>\n<c-h>\1\0\1\fnoremap\2\27:Telescope buffers<CR>\14<leader>b\1\0\1\fnoremap\2\29:Telescope registers<CR>\15<leader>fr\1\0\1\fnoremap\2#:Telescope command_history<CR>\15<leader>fh\1\0\1\fnoremap\2 :Telescope git_branches<CR>\15<leader>fb\1\0\1\fnoremap\2\31:Telescope colorscheme<CR>\15<leader>fc\1\0\1\fnoremap\2\29:Telescope man_pages<CR>\15<leader>fm\1\0\1\fnoremap\2\29:Telescope live_grep<CR>\15<leader>fa\1\0\1\fnoremap\2\29:Telescope git_files<CR>\15<leader>fg\1\0\1\fnoremap\2\30:Telescope find_files<CR>\15<leader>ff\6n\20nvim_set_keymap\bapi\bvim\nsetup\14telescope\frequire\21€€À™\4\0' },
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -263,6 +276,36 @@ _G.packer_plugins = {
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-cool",
     url = "https://github.com/romainl/vim-cool"
   },
+  ["vim-misc"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-misc",
+    url = "https://github.com/xolox/vim-misc"
+  },
+  ["vim-polyglot"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-polyglot",
+    url = "https://github.com/sheerun/vim-polyglot"
+  },
+  ["vim-prettier"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-prettier",
+    url = "https://github.com/prettier/vim-prettier"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-rooter"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-rooter",
+    url = "https://github.com/airblade/vim-rooter"
+  },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
+  },
   ["vim-snippets"] = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-snippets",
@@ -272,6 +315,32 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-startify",
     url = "https://github.com/mhinz/vim-startify"
+  },
+  ["vim-textobj-between"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-textobj-between",
+    url = "https://github.com/thinca/vim-textobj-between"
+  },
+  ["vim-textobj-entire"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-textobj-entire",
+    url = "https://github.com/kana/vim-textobj-entire"
+  },
+  ["vim-textobj-user"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-textobj-user",
+    url = "https://github.com/kana/vim-textobj-user"
+  },
+  ["vim-vinegar"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-vinegar",
+    url = "https://github.com/tpope/vim-vinegar"
+  },
+  vimux = {
+    config = { '\27LJ\1\2Ö\3\0\0\6\0\22\1/4\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\5\0:\1\4\0002\0\5\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\t\0%\4\n\0003\5\v\0>\1\5\2;\1\1\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\f\0%\4\r\0003\5\14\0>\1\5\2;\1\2\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\15\0%\4\16\0003\5\17\0>\1\5\2;\1\3\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\18\0%\4\19\0003\5\20\0>\1\5\0<\1\0\0005\0\21\0G\0\1\0\nafter\1\0\1\fnoremap\2\30:VimuxInterruptRunner<CR>\15<leader>vi\1\0\1\fnoremap\2\29:VimuxRunLastCommand<CR>\15<leader>vr\1\0\1\fnoremap\2\26:VimuxCloseRunner<CR>\15<leader>vc\1\0\1\fnoremap\2):VimuxRunCommand("makeSpace.sh")<CR>\15<leader>vm\6n\20nvim_set_keymap\bapi\0067\16VimuxHeight\6v\21VimuxOrientation\6g\bvim\t€€À™\4\0' },
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vimux",
+    url = "https://github.com/benmills/vimux"
   }
 }
 
@@ -288,30 +357,46 @@ time([[Config for nvim-lspconfig]], false)
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\1\2:\0\1\3\0\4\0\0064\1\0\0007\1\1\0017\1\2\0017\2\3\0>\1\2\1G\0\1\0\tbody\19UltiSnips#Anon\afn\bvimÚ\6\1\0\b\0004\0m4\0\0\0%\1\1\0>\0\2\0027\1\2\0003\2\6\0003\3\4\0001\4\3\0:\4\5\3:\3\a\0023\3\v\0007\4\b\0007\5\b\0007\5\t\5'\6üÿ>\5\2\0023\6\n\0>\4\3\2:\4\f\0037\4\b\0007\5\b\0007\5\t\5'\6\4\0>\5\2\0023\6\r\0>\4\3\2:\4\14\0037\4\b\0007\5\b\0007\5\15\5>\5\1\0023\6\16\0>\4\3\2:\4\17\0037\4\18\0007\4\19\4:\4\20\0037\4\b\0003\5\22\0007\6\b\0007\6\21\6>\6\1\2:\6\23\0057\6\b\0007\6\24\6>\6\1\2:\6\25\5>\4\2\2:\4\26\0037\4\b\0007\4\27\0043\5\28\0>\4\2\2:\4\29\3:\3\b\0027\3\18\0007\3\30\0032\4\4\0003\5\31\0;\5\1\0043\5 \0;\5\2\0043\5!\0;\5\3\4>\3\2\2:\3\30\2>\1\2\0017\1\2\0007\1\"\1%\2#\0003\3%\0002\4\3\0003\5$\0;\5\1\4:\4\30\3>\1\3\0017\1\2\0007\1\"\1%\2&\0003\3)\0007\4\18\0007\4\30\0042\5\3\0003\6'\0;\6\1\0052\6\3\0003\a(\0;\a\1\6>\4\3\2:\4\30\3>\1\3\0014\1\0\0%\2*\0>\1\2\0027\1+\0014\2,\0007\2-\0027\2.\0027\2/\2>\2\1\0=\1\0\0024\2\0\0%\0030\0>\2\2\0027\0021\0027\2\2\0023\0032\0:\0013\3>\2\2\1G\0\1\0\17capabilities\1\0\0\nvimls\14lspconfig\29make_client_capabilities\rprotocol\blsp\bvim\24update_capabilities\17cmp_nvim_lsp\1\0\0\1\0\1\tname\fcmdline\1\0\1\tname\tpath\6:\1\0\0\1\0\1\tname\vbuffer\6/\fcmdline\1\0\1\tname\vbuffer\1\0\1\tname\14ultisnips\1\0\1\tname\rnvim_lsp\fsources\t<CR>\1\0\1\vselect\2\fconfirm\n<C-e>\6c\nclose\6i\1\0\0\nabort\n<C-y>\fdisable\vconfig\14<C-Space>\1\3\0\0\6i\6c\rcomplete\n<C-f>\1\3\0\0\6i\6c\n<C-d>\1\0\0\1\3\0\0\6i\6c\16scroll_docs\fmapping\fsnippet\1\0\0\vexpand\1\0\0\0\nsetup\bcmp\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: clever-f.vim
 time([[Config for clever-f.vim]], true)
 try_loadstring("\27LJ\1\2¥\1\0\0\2\0\6\0\0174\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\1\0'\1\0\0:\1\3\0004\0\0\0007\0\1\0'\1\0\0:\1\4\0004\0\0\0007\0\1\0'\1\1\0:\1\5\0G\0\1\0\23clever_f_mark_char\25clever_f_mark_direct\24clever_f_smart_case\28clever_f_across_no_line\6g\bvim\0", "config", "clever-f.vim")
 time([[Config for clever-f.vim]], false)
--- Config for: nvim-neoclip.lua
-time([[Config for nvim-neoclip.lua]], true)
-try_loadstring("\27LJ\1\2f\0\0\2\0\5\0\f4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\4\0%\1\1\0>\0\2\1G\0\1\0\19load_extension\14telescope\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
-time([[Config for nvim-neoclip.lua]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring('\27LJ\1\2å\6\0\0\6\0#\1Y4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0012\0\n\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\a\0%\4\b\0003\5\t\0>\1\5\2;\1\1\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\n\0%\4\v\0003\5\f\0>\1\5\2;\1\2\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\r\0%\4\14\0003\5\15\0>\1\5\2;\1\3\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\16\0%\4\17\0003\5\18\0>\1\5\2;\1\4\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\19\0%\4\20\0003\5\21\0>\1\5\2;\1\5\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\22\0%\4\23\0003\5\24\0>\1\5\2;\1\6\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\25\0%\4\26\0003\5\27\0>\1\5\2;\1\a\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\28\0%\4\29\0003\5\30\0>\1\5\2;\1\b\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\31\0%\4 \0003\5!\0>\1\5\0<\1\0\0005\0"\0G\0\1\0\nafter\1\0\1\fnoremap\2\29:Telescope help_tags<CR>\15<leader>ft\1\0\1\fnoremap\2\29:Telescope registers<CR>\15<leader>fr\1\0\1\fnoremap\2#:Telescope command_history<CR>\15<leader>fh\1\0\1\fnoremap\2 :Telescope git_branches<CR>\15<leader>fb\1\0\1\fnoremap\2\31:Telescope colorscheme<CR>\15<leader>fc\1\0\1\fnoremap\2\29:Telescope man_pages<CR>\15<leader>fm\1\0\1\fnoremap\2\29:Telescope live_grep<CR>\15<leader>fa\1\0\1\fnoremap\2\29:Telescope git_files<CR>\15<leader>fg\1\0\1\fnoremap\2\30:Telescope find_files<CR>\15<leader>ff\6n\20nvim_set_keymap\bapi\bvim\nsetup\14telescope\frequire\19€€À™\4\0', "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: ultisnips
-time([[Config for ultisnips]], true)
-try_loadstring('\27LJ\1\2Ñ\2\0\0\2\0\r\0\0254\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\3\0:\1\4\0004\0\0\0007\0\1\0%\1\6\0:\1\5\0004\0\0\0007\0\1\0%\1\b\0:\1\a\0004\0\0\0007\0\1\0%\1\n\0:\1\t\0004\0\0\0007\0\1\0003\1\f\0:\1\v\0G\0\1\0\1\3\0\0\18vim/UltiSnips\14UltiSnips UltiSnipsSnippetDirectories\21~/.vim/UltiSnips\25UltiSnipsSnippetsDir\fcontext"SuperTabDefaultCompletionType\n<c-z>!UltiSnipsJumpBackwardTrigger UltiSnipsJumpForwardTrigger\n<tab>\27UltiSnipsExpandTrigger\6g\bvim\0', "config", "ultisnips")
-time([[Config for ultisnips]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+try_loadstring("\27LJ\1\2‰\1\0\0\4\0\b\0\v4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\6\0003\2\3\0003\3\4\0:\3\5\2:\2\a\1>\0\2\1G\0\1\0\fautotag\1\0\0\14filetypes\1\4\0\0\thtml\bxml\15javascript\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
+time([[Config for nvim-ts-autotag]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 try_loadstring("\27LJ\1\2”\1\0\0\3\0\b\0\v3\0\0\0005\0\1\0004\0\2\0%\1\3\0>\0\2\0027\0\4\0003\1\6\0003\2\5\0:\2\a\1>\0\2\1G\0\1\0\foptions\1\0\0\1\0\1\ntheme\fdracula\nsetup\flualine\frequire\rrequires\1\2\1\0!kyazdani42/nvim-web-devicons\bopt\2\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
+-- Config for: vimux
+time([[Config for vimux]], true)
+try_loadstring('\27LJ\1\2Ö\3\0\0\6\0\22\1/4\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\5\0:\1\4\0002\0\5\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\t\0%\4\n\0003\5\v\0>\1\5\2;\1\1\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\f\0%\4\r\0003\5\14\0>\1\5\2;\1\2\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\15\0%\4\16\0003\5\17\0>\1\5\2;\1\3\0004\1\0\0007\1\6\0017\1\a\1%\2\b\0%\3\18\0%\4\19\0003\5\20\0>\1\5\0<\1\0\0005\0\21\0G\0\1\0\nafter\1\0\1\fnoremap\2\30:VimuxInterruptRunner<CR>\15<leader>vi\1\0\1\fnoremap\2\29:VimuxRunLastCommand<CR>\15<leader>vr\1\0\1\fnoremap\2\26:VimuxCloseRunner<CR>\15<leader>vc\1\0\1\fnoremap\2):VimuxRunCommand("makeSpace.sh")<CR>\15<leader>vm\6n\20nvim_set_keymap\bapi\0067\16VimuxHeight\6v\21VimuxOrientation\6g\bvim\t€€À™\4\0', "config", "vimux")
+time([[Config for vimux]], false)
+-- Config for: nvim-neoclip.lua
+time([[Config for nvim-neoclip.lua]], true)
+try_loadstring("\27LJ\1\2f\0\0\2\0\5\0\f4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\0\0%\1\3\0>\0\2\0027\0\4\0%\1\1\0>\0\2\1G\0\1\0\19load_extension\14telescope\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
+time([[Config for nvim-neoclip.lua]], false)
+-- Config for: quick-scope
+time([[Config for quick-scope]], true)
+try_loadstring("\27LJ\1\2+\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\0\0:\1\2\0G\0\1\0\14qs_enable\6g\bvim\0", "config", "quick-scope")
+time([[Config for quick-scope]], false)
+-- Config for: cmp-nvim-ultisnips
+time([[Config for cmp-nvim-ultisnips]], true)
+try_loadstring("\27LJ\1\2›\2\0\0\a\0\v\2+4\0\0\0007\0\1\0007\0\2\0'\1\0\0%\2\3\0>\0\3\2\a\0\4\0T\0\2€)\0\1\0H\0\2\0004\0\5\0004\1\0\0007\1\1\0017\1\6\1'\2\0\0>\1\2\0=\0\0\3\b\1\0\0T\2\20€4\2\0\0007\2\1\0027\2\a\2'\3\0\0\21\4\1\0\16\5\0\0)\6\2\0>\2\5\0028\2\1\2\16\3\2\0007\2\b\2\16\4\1\0\16\5\1\0>\2\4\2\16\3\2\0007\2\t\2%\4\n\0>\2\3\2\n\2\0\0T\2\2€)\2\1\0T\3\1€)\2\2\0H\2\2\0\a%s\nmatch\bsub\23nvim_buf_get_lines\24nvim_win_get_cursor\vunpack\vprompt\fbuftype\24nvim_buf_get_option\bapi\bvim\0\2r\0\1\a\0\5\0\0154\1\0\0007\1\1\0017\1\2\0014\2\0\0007\2\1\0027\2\3\2\16\3\0\0)\4\2\0)\5\2\0)\6\2\0>\2\5\2%\3\4\0)\4\2\0>\1\4\1G\0\1\0\6n\27nvim_replace_termcodes\18nvim_feedkeys\bapi\bvim:\0\1\3\0\4\0\0064\1\0\0007\1\1\0017\1\2\0017\2\3\0>\1\2\1G\0\1\0\tbody\19UltiSnips#Anon\afn\bvimé\1\0\1\3\3\a\1\29+\1\0\0007\1\0\1>\1\1\2\15\0\1\0T\2\r€4\1\1\0007\1\2\0017\1\3\1>\1\1\2\t\1\0\0T\1\3€+\1\1\0%\2\4\0@\1\2\0+\1\0\0007\1\5\1>\1\1\1T\1\n€+\1\2\0>\1\1\2\15\0\1\0T\2\4€+\1\1\0%\2\6\0>\1\2\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\0À\2À\1À\f<Space>\21select_next_item(<C-R>=UltiSnips#ExpandSnippet()<CR>\31UltiSnips#CanExpandSnippet\afn\bvim\fvisible\2ü\2\0\1\3\3\n\1-+\1\0\0007\1\0\1>\1\1\2\v\1\0\0T\1\n€4\1\1\0007\1\2\0017\1\3\1>\1\1\2\t\1\0\0T\1\4€+\1\1\0%\2\4\0>\1\2\1T\1\29€4\1\1\0007\1\2\0017\1\5\1>\1\1\2\t\1\0\0T\1\4€+\1\1\0%\2\6\0>\1\2\1T\1\19€+\1\0\0007\1\a\1>\1\1\2\15\0\1\0T\2\4€+\1\0\0007\1\b\1>\1\1\1T\1\n€+\1\2\0>\1\1\2\15\0\1\0T\2\4€+\1\1\0%\2\t\0>\1\2\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\0À\2À\1À\n<Tab>\21select_next_item\fvisible,<ESC>:call UltiSnips#JumpForwards()<CR>\30UltiSnips#CanJumpForwards(<C-R>=UltiSnips#ExpandSnippet()<CR>\31UltiSnips#CanExpandSnippet\afn\bvim\23get_selected_entry\2È\1\0\1\3\2\6\1\0224\1\0\0007\1\1\0017\1\2\1>\1\1\2\t\1\0\0T\1\4€+\1\0\0%\2\3\0>\1\2\1T\1\v€+\1\1\0007\1\4\1>\1\1\2\15\0\1\0T\2\4€+\1\1\0007\1\5\1>\1\1\1T\1\2€\16\1\0\0>\1\1\1G\0\1\0\2À\0À\21select_prev_item\fvisible-<ESC>:call UltiSnips#JumpBackwards()<CR>\31UltiSnips#CanJumpBackwards\afn\bvim\2›\2\1\0\t\0\23\0#4\0\0\0%\1\1\0>\0\2\0021\1\2\0001\2\3\0007\3\4\0003\4\b\0003\5\6\0001\6\5\0:\6\a\5:\5\t\0042\5\3\0003\6\n\0;\6\1\5:\5\v\0043\5\15\0007\6\f\0001\a\r\0003\b\14\0>\6\3\2:\6\16\0057\6\f\0001\a\17\0003\b\18\0>\6\3\2:\6\19\0057\6\f\0001\a\20\0003\b\21\0>\6\3\2:\6\22\5:\5\f\4>\3\2\0010\0\0€G\0\1\0\f<S-Tab>\1\4\0\0\6i\6s\6c\0\n<Tab>\1\4\0\0\6i\6s\6c\0\14<C-Space>\1\0\0\1\4\0\0\6i\6s\6c\0\fmapping\fsources\1\0\1\tname\14ultisnips\fsnippet\1\0\0\vexpand\1\0\0\0\nsetup\0\0\bcmp\frequire\0", "config", "cmp-nvim-ultisnips")
+time([[Config for cmp-nvim-ultisnips]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: ultisnips
+time([[Config for ultisnips]], true)
+try_loadstring('\27LJ\1\2Ñ\2\0\0\2\0\r\0\0254\0\0\0007\0\1\0%\1\3\0:\1\2\0004\0\0\0007\0\1\0%\1\3\0:\1\4\0004\0\0\0007\0\1\0%\1\6\0:\1\5\0004\0\0\0007\0\1\0%\1\b\0:\1\a\0004\0\0\0007\0\1\0%\1\n\0:\1\t\0004\0\0\0007\0\1\0003\1\f\0:\1\v\0G\0\1\0\1\3\0\0\18vim/UltiSnips\14UltiSnips UltiSnipsSnippetDirectories\21~/.vim/UltiSnips\25UltiSnipsSnippetsDir\fcontext"SuperTabDefaultCompletionType\n<c-z>!UltiSnipsJumpBackwardTrigger UltiSnipsJumpForwardTrigger\n<tab>\27UltiSnipsExpandTrigger\6g\bvim\0', "config", "ultisnips")
+time([[Config for ultisnips]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring('\27LJ\1\2±\a\0\0\6\0&\1b4\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0012\0\v\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\a\0%\4\b\0003\5\t\0>\1\5\2;\1\1\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\n\0%\4\v\0003\5\f\0>\1\5\2;\1\2\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\r\0%\4\14\0003\5\15\0>\1\5\2;\1\3\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\16\0%\4\17\0003\5\18\0>\1\5\2;\1\4\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\19\0%\4\20\0003\5\21\0>\1\5\2;\1\5\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\22\0%\4\23\0003\5\24\0>\1\5\2;\1\6\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\25\0%\4\26\0003\5\27\0>\1\5\2;\1\a\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\28\0%\4\29\0003\5\30\0>\1\5\2;\1\b\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3\31\0%\4 \0003\5!\0>\1\5\2;\1\t\0004\1\3\0007\1\4\0017\1\5\1%\2\6\0%\3"\0%\4#\0003\5$\0>\1\5\0<\1\0\0005\0%\0G\0\1\0\nafter\1\0\1\fnoremap\2\29:Telescope help_tags<CR>\n<c-h>\1\0\1\fnoremap\2\27:Telescope buffers<CR>\14<leader>b\1\0\1\fnoremap\2\29:Telescope registers<CR>\15<leader>fr\1\0\1\fnoremap\2#:Telescope command_history<CR>\15<leader>fh\1\0\1\fnoremap\2 :Telescope git_branches<CR>\15<leader>fb\1\0\1\fnoremap\2\31:Telescope colorscheme<CR>\15<leader>fc\1\0\1\fnoremap\2\29:Telescope man_pages<CR>\15<leader>fm\1\0\1\fnoremap\2\29:Telescope live_grep<CR>\15<leader>fa\1\0\1\fnoremap\2\29:Telescope git_files<CR>\15<leader>fg\1\0\1\fnoremap\2\30:Telescope find_files<CR>\15<leader>ff\6n\20nvim_set_keymap\bapi\bvim\nsetup\14telescope\frequire\21€€À™\4\0', "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

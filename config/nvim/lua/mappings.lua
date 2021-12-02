@@ -12,17 +12,18 @@ api.nvim_set_keymap('n', ':', ';', { noremap = true })
 
 api.nvim_set_keymap('n', '<leader>s', ':w<CR>', { noremap = true })
 
-api.nvim_set_keymap('n', '<leader>V', ':tabedit $MYVIMRC<CR>', { noremap = true })
-api.nvim_set_keymap('n', '<C-Space>', '"*p', { noremap = true })                 -- paste the contents of the clipboard
-api.nvim_set_keymap('n', '<CS-Space>', 'gg"*yG:q!<CR>', { noremap = true })      -- copy whole buffer to clipboard and quit
+api.nvim_set_keymap('n', '<leader>v', ':tabedit $MYVIMRC<CR>', { noremap = true })
+api.nvim_set_keymap('n', '<leader>V', ':so $MYVIMRC<CR>',      { noremap = true })
 
+-- paste the contents of the clipboard
+api.nvim_set_keymap('n', '<C-Space>', '"*p', { noremap = true })
+-- copy whole buffer to clipboard and quit
+api.nvim_set_keymap('n', '<CS-Space>', 'gg"*yG:q!<CR>', { noremap = true })
+
+-- run previous shell command
 api.nvim_set_keymap('n', '<leader>r', ':!<UP><CR>', { noremap = true })
 api.nvim_set_keymap('n', '<leader>p', ':set paste!<CR>', { noremap = true })
 
-api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
-api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
-api.nvim_set_keymap('n', '<C-k>',' <C-w>k', { noremap = true })
-api.nvim_set_keymap('n', '<C-l>',' <C-w>l', { noremap = true })
 api.nvim_set_keymap('n', '<leader>j',' <C-w>j', { noremap = true })
 api.nvim_set_keymap('n', '<leader>k',' <C-w>k', { noremap = true })
 api.nvim_set_keymap('n', '<leader>l',' <C-w>l', { noremap = true })
@@ -47,22 +48,25 @@ api.nvim_set_keymap('v', 'L','g_', { noremap = true })
 api.nvim_set_keymap('i', '{{', '{' .. '<enter>' .. '}<ESC>O', { noremap = true })
 api.nvim_set_keymap('i', ',,', ',<CR>', { noremap = true })
 
-api.nvim_set_keymap('n', 'ZQ',' ZZ', { noremap = true })
 api.nvim_set_keymap('n', 'ZZ',' ZQ', { noremap = true })
+api.nvim_set_keymap('n', 'ZQ',' ZZ', { noremap = true })
 
 api.nvim_set_keymap('n', 'Q',' <nop>', { noremap = true })
 
+-- command mode move to end and home like in shell
 api.nvim_set_keymap('c', '<C-a>', '<Home>', { noremap = true })
 api.nvim_set_keymap('c', '<C-e>', '<End>',  { noremap = true })
 
 api.nvim_set_keymap('n', 'Y','y$', { noremap = true })
 
+-- quickly move around in insert mode
 api.nvim_set_keymap('i', '<c-l>', '<right>', { noremap = true })
 api.nvim_set_keymap('i', '<c-h>', '<left>',  { noremap = true })
 api.nvim_set_keymap('i', '<c-j>', '<ESC>A',  { noremap = true })
 api.nvim_set_keymap('i', '<c-o>', '<ESC>I',  { noremap = true })
 
-api.nvim_set_keymap('n', 'gf',' :edit <cfile><cr>', { noremap = true }) -- edit file even if it doesn't exist
+-- edit file even if it doesn't exist
+api.nvim_set_keymap('n', 'gf',' :edit <cfile><cr>', { noremap = true })
 
 api.nvim_set_keymap('n', '<leader>os', ':edit ~/.config/nvim/lua/settings.lua<CR>',  { noremap = true })
 api.nvim_set_keymap('n', '<leader>of', ':edit ~/.config/nvim/lua/filetypes.lua<CR>', { noremap = true })
@@ -70,15 +74,22 @@ api.nvim_set_keymap('n', '<leader>om', ':edit ~/.config/nvim/lua/mappings.lua<CR
 api.nvim_set_keymap('n', '<leader>op', ':edit ~/.config/nvim/lua/plugins.lua<CR>',   { noremap = true })
 api.nvim_set_keymap('n', '<leader>ot', ':edit ~/.config/nvim/lua/theme.lua<CR>',     { noremap = true })
 
+-- create text-object between / /
+api.nvim_set_keymap('o', 'i/', ':<C-U>normal! T/vt/<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('o', 'a/', ':<C-U>normal! F/vf/<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('x', 'i/', ':<C-U>normal! T/vt/<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('x', 'a/', ':<C-U>normal! F/vf/<CR>', { noremap = true, silent = true })
+
+-- remove trailing whitespace
+api.nvim_set_keymap('n', '<leader>w',":%s/\\s\\+$//<CR>", { noremap = true })
+
+api.nvim_set_keymap('n', '<F10>', ':TSHighlightCapturesUnderCursor<CR>', { noremap = true })
+
 -- Swap two words (tn - current with next word; tp - current with previous)
 --api.nvim_set_keymap('n', '<leader>tn', '"_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>',    { noremap = true, silent = true })
 --api.nvim_set_keymap('n', '<leader>tp', '"_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>', { noremap = true, silent = true })
 
 -- Show what highlight group symbol/word under cursor belongs to
---api.nvim_set_keymap('n', '<F10>' ':echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . \'> trans<\' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" .  synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>', { noremap = true })
-
--- Remove trailing whitespace
---api.nvim_set_keymap('n', '<leader>w',':%s/\s+$//<CR>', { noremap = true })
 
 --[[
 
@@ -115,11 +126,6 @@ nnoremap <leader>Q :g/^#\\|\(^$\)/d<CR>
 " execute "!perl /home/bertold/Devel/Projects/wso2tools/add_artifact.pl " . system("git rev-parse --show-toplevel | tr -d '\\n'")
 
 " Change/select object between //
-onoremap <silent> i/ :<C-U>normal! T/vt/<CR>
-onoremap <silent> a/ :<C-U>normal! F/vt/<CR>
-
-xnoremap <silent> i/ :<C-U>normal! T/vt/<CR>
-xnoremap <silent> a/ :<C-U>normal! F/vt/<CR>
 
 onoremap <silent> iy :<C-U>execute "normal!?^---\r:nohlsearch\rjV/^---\rk"<cr>
 onoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>

@@ -1,9 +1,8 @@
-" Setting based on file type
+-- Setting based on file type
 
-" Diff [[[
+-- This is from https://github.com/sgeb/vim-diff-fold/
 
-" This is from https://github.com/sgeb/vim-diff-fold/
-
+vim.cmd [[
 function! DiffFoldLevel()
     let l:line=getline(v:lnum)
 
@@ -26,10 +25,11 @@ augroup ft_diff
     autocmd FileType diff setlocal foldmethod=expr
     autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
 augroup END
+]]
 
-"]]]
-" XML[[[
+-- XML
 
+vim.cmd [[
 let g:xml_syntax_folding=1
 au BufEnter,BufCreate *.xml,*.wsdl,*.xslt,*.xsl set filetype=xml
 au FileType xml setlocal foldmethod=syntax
@@ -40,31 +40,36 @@ nnoremap =x :exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set fi
 
 " Go to a sequence file in a WSO2 project
 nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
+]]
 
-"]]]
-" XSLT[[[
+-- Lua
+vim.cmd [[
+au FileType lua setlocal foldmethod=syntax
+au BufEnter plugins.lua LspStop
+]]
 
-function! XSLTransform()
-    execute "chdir %:h"
+-- XSLT
 
-    let l:base_name = expand("%:r")
-    let l:xml_name  = expand(l:base_name) . ".xml"
-    let l:xsl_name  = expand(l:base_name) . ".xslt"
-    let l:html_name = expand(l:base_name) . ".html"
+--function! XSLTransform()
+    --execute "chdir %:h"
 
-    execute "!start Transform -o:" . expand(l:html_name) . " " . expand(l:xml_name) . " " . expand(l:xsl_name)
-    execute "tabedit " . expand(l:html_name)
+    --let l:base_name = expand("%:r")
+    --let l:xml_name  = expand(l:base_name) . ".xml"
+    --let l:xsl_name  = expand(l:base_name) . ".xslt"
+    --let l:html_name = expand(l:base_name) . ".html"
 
-endfunction
+    --execute "!start Transform -o:" . expand(l:html_name) . " " . expand(l:xml_name) . " " . expand(l:xsl_name)
+    --execute "tabedit " . expand(l:html_name)
 
-"map <leader>xs :call XSLTransform()<CR>
+--endfunction
 
-"]]]
-" JSON [[[
+--map <leader>xs :call XSLTransform()<CR>
 
-" Format JSON files with python
-au BufEnter *.json map =x :%!python -m json.tool<CR>
+-- JSON
 
-"]]]
+-- Format JSON files with python
+vim.cmd [[
+    au BufEnter *.json map =x :%!python -m json.tool<CR>
+]]
 
-packadd! matchit
+--]]]

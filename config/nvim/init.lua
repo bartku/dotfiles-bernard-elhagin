@@ -4,7 +4,7 @@
 -- http://github.com/bernard-elhagin/dotfiles
 
 require('settings')   -- General settings
---require('filetypes')  -- Settings for specific filetypes
 require('mappings')   -- Mappings
 require('plugins')    -- Initialize plugins
+require('filetypes')  -- Settings for specific filetypes
 require('theme')      -- Color settings

@@ -17,7 +17,6 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
-    --use {
     use 'wbthomason/packer.nvim'
 
     use 'rafi/awesome-vim-colorschemes'
@@ -40,7 +39,6 @@ return require('packer').startup(function()
     use 'nvim-treesitter/playground'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
-    use 'unblevable/quick-scope'
     use 'williamboman/nvim-lsp-installer'
     use 'godlygeek/tabular'
     use 'markonm/traces.vim'
@@ -48,7 +46,23 @@ return require('packer').startup(function()
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'honza/vim-snippets'
     use 'romainl/vim-cool'
-    --end
+    use 'tpope/vim-vinegar'
+    use 'xolox/vim-misc'
+    use 'sheerun/vim-polyglot'
+    use 'prettier/vim-prettier'
+    use 'tpope/vim-repeat'
+    use 'airblade/vim-rooter'
+    use 'machakann/vim-sandwich'
+    use 'thinca/vim-textobj-between'
+    use 'kana/vim-textobj-entire'
+    use 'kana/vim-textobj-user'
+
+    use { 'unblevable/quick-scope',
+
+        config = function()
+            vim.g.qs_enable = 0
+        end
+    }
 
     use { 'nvim-telescope/telescope.nvim',
 
@@ -64,8 +78,24 @@ return require('packer').startup(function()
                     vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope git_branches<CR>',    { noremap = true }),
                     vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope command_history<CR>', { noremap = true }),
                     vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope registers<CR>',       { noremap = true }),
-                    vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope help_tags<CR>',       { noremap = true })
+                    vim.api.nvim_set_keymap('n', '<leader>b',  ':Telescope buffers<CR>',         { noremap = true }),
+                    vim.api.nvim_set_keymap('n', '<c-h>',      ':Telescope help_tags<CR>',       { noremap = true })
                 }
+        end
+    }
+
+    use { 'benmills/vimux',
+
+        config = function()
+            vim.g.VimuxOrientation = "v"
+            vim.g.VimuxHeight = "7"
+
+            after = {
+                vim.api.nvim_set_keymap('n', '<leader>vm', ':VimuxRunCommand("makeSpace.sh")<CR>', { noremap = true }),
+                vim.api.nvim_set_keymap('n', '<leader>vc', ':VimuxCloseRunner<CR>',                { noremap = true }),
+                vim.api.nvim_set_keymap('n', '<leader>vr', ':VimuxRunLastCommand<CR>',             { noremap = true }),
+                vim.api.nvim_set_keymap('n', '<leader>vi', ':VimuxInterruptRunner<CR>',            { noremap = true })
+            }
         end
     }
 
@@ -226,103 +256,108 @@ return require('packer').startup(function()
         end
     }
 
+    use { 'quangnguyen30192/cmp-nvim-ultisnips',
+
+        config = function()
+            local cmp = require("cmp")
+            local has_any_words_before = function()
+              if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+                return false
+              end
+              local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+              return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            end
+
+            local press = function(key)
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
+            end
+
+            cmp.setup({
+              snippet = {
+                expand = function(args)
+                  vim.fn["UltiSnips#Anon"](args.body)
+                end,
+              },
+              sources = {
+                { name = "ultisnips" },
+                -- more sources
+              },
+              -- Configure for <TAB> people
+              -- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
+              -- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
+              -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
+              -- - <C-space> to expand the selected snippet from completion menu
+              mapping = {
+                ["<C-Space>"] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                    if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+                      return press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
+                    end
+
+                    cmp.select_next_item()
+                  elseif has_any_words_before() then
+                    press("<Space>")
+                  else
+                    fallback()
+                  end
+                end, {
+                  "i",
+                  "s",
+                  -- add this line when using cmp-cmdline:
+                  "c",
+                }),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                  if cmp.get_selected_entry() == nil and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+                    press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
+                  elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                    press("<ESC>:call UltiSnips#JumpForwards()<CR>")
+                  elseif cmp.visible() then
+                    cmp.select_next_item()
+                  elseif has_any_words_before() then
+                    press("<Tab>")
+                  else
+                    fallback()
+                  end
+                end, {
+                  "i",
+                  "s",
+                  -- add this line when using cmp-cmdline:
+                  "c",
+                }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                  if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                    press("<ESC>:call UltiSnips#JumpBackwards()<CR>")
+                  elseif cmp.visible() then
+                    cmp.select_prev_item()
+                  else
+                    fallback()
+                  end
+                end, {
+                  "i",
+                  "s",
+                  -- add this line when using cmp-cmdline:
+                  "c",
+                }),
+              },
+            })
+      end
+    }
+
+    use { 'windwp/nvim-ts-autotag',
+
+        config = function()
+            require('nvim-ts-autotag').setup({
+                    autotag = {
+                        enable = true,
+                        filetypes = { 'html', 'xml', 'javascript' }
+                    }
+            })
+        end
+    }
+
 end)
 
     --[[
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-
-function NultisnipsSetup()
-lua << NULTISNIPS
-    config = function()
-    local cmp = require("cmp")
-    local has_any_words_before = function()
-      if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-        return false
-      end
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
-    local press = function(key)
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
-    end
-
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          vim.fn["UltiSnips#Anon"](args.body)
-        end,
-      },
-      sources = {
-        { name = "ultisnips" },
-        -- more sources
-      },
-      -- Configure for <TAB> people
-      -- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
-      -- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
-      -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
-      -- - <C-space> to expand the selected snippet from completion menu
-      mapping = {
-        ["<C-Space>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-              return press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-            end
-
-            cmp.select_next_item()
-          elseif has_any_words_before() then
-            press("<Space>")
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-          -- add this line when using cmp-cmdline:
-          "c",
-        }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.get_selected_entry() == nil and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-            press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-          elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-            press("<ESC>:call UltiSnips#JumpForwards()<CR>")
-          elseif cmp.visible() then
-            cmp.select_next_item()
-          elseif has_any_words_before() then
-            press("<Tab>")
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-          -- add this line when using cmp-cmdline:
-          "c",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-            press("<ESC>:call UltiSnips#JumpBackwards()<CR>")
-          elseif cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-          -- add this line when using cmp-cmdline:
-          "c",
-        }),
-      },
-    })
-  end
-NULTISNIPS
-endfunction
-
-augroup NultisnipsSetup
-    autocmd!
-    autocmd User PlugLoaded call NultisnipsSetup()
-augroup END
 " Highlight Word
 "
 " This mini-plugin provides a few mappings for highlighting words temporarily.
@@ -368,47 +403,6 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-Plug 'NTBBloodbath/rest.nvim'
-
-function Rest()
-lua << REST
-    requires = { 'nvim-lua/plenary.vim' },
-        require('rest-nvim').setup({
-            -- Open request result in a horizontal split
-            result_split_horizontal = true,
-            -- Skip SSL verification
-            skip_ssl_verification = true,
-            highlight = {
-                enabled = true,
-                timeout = 150
-            },
-            result = {
-                show_url = true,
-                show_http_info = true,
-                show_headers = true
-            },
-            jump_to_request = false,
-            env_file = '.env',
-            custom_dynamic_variables = {}
-    })
-REST
-endfunction
-
-augroup Rest
-    autocmd!
-    autocmd User PlugLoaded call Rest()
-augroup END
-
-
-
-let g:airline_powerline_fonts = 1
-Plug 'stevearc/vim-arduino'
-
-let g:arduino_cmd = '/home/bertold/bin/arduino-1.8.15/arduino'
-let g:arduino_dir = '/home/bertold/bin/arduino-1.8.15'
-let g:arduino_home_dir = '/home/bertold/.arduino15'
-let g:arduino_args = '--verbose-upload'
-
 Plug 'idbrii/vim-endoscope'
 Plug 'tpope/vim-fugitive'
 
@@ -420,37 +414,5 @@ nnoremap <leader>gb :silent Gblame<cr>
 nnoremap <leader>gc :silent Gcommit<cr>
 nnoremap <leader>gl :silent Shell git gl -18<cr>:wincmd \|<cr>
 
-let g:gitgutter_map_keys = 0
-
-Plug 'xolox/vim-misc'
-Plug 'sheerun/vim-polyglot'
-Plug 'prettier/vim-prettier'
-Plug 'tpope/vim-repeat'
-Plug 'airblade/vim-rooter'
-Plug 'machakann/vim-sandwich'
-
-let g:startify_custom_header = ''
-let g:startify_change_to_vcs_root = 1
-Plug 'thinca/vim-textobj-between'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-user'
-Plug 'christoomey/vim-tmux-navigator'
-
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-Plug 'benmills/vimux'
-
-let g:VimuxOrientation="h"
-let g:VimuxHeight="35"
-
-noremap <leader>vm :VimuxRunCommand("makeSpace.sh")<CR>
-noremap <leader>vc :VimuxCloseRunner<CR>
-noremap <leader>vr :VimuxRunLastCommand<CR>
-noremap <leader>vi :VimuxInterruptRunner<CR>
-Plug 'tpope/vim-vinegar'
 Plug 'sukima/xmledit'
 ]]
