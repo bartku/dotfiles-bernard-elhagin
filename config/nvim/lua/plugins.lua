@@ -24,7 +24,9 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-calc'
     use 'vim-scripts/CSApprox'
     use 'dyng/ctrlsf.vim'
     use 'whiteinge/diffconflicts'
@@ -137,11 +139,12 @@ return require('packer').startup(function()
     use { 'hrsh7th/nvim-cmp',
 
         config = function()
+            vim.o.completeopt = 'menuone,noselect'
+
             local cmp = require'cmp'
 
             cmp.setup({
                 snippet = {
-                    -- REQUIRED - you must specify a snippet engine
                     expand = function(args)
                         vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
                     end,
@@ -155,12 +158,29 @@ return require('packer').startup(function()
                         i = cmp.mapping.abort(),
                         c = cmp.mapping.close(),
                     }),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<CR>'] = cmp.mapping.confirm({ cmp.ConfirmBehavior.Replace, select = true }),
                 },
+                ['<Tab>'] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end,
+                ['<S-Tab>'] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end,
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
+                    { name = 'nvim_lua' },
                     { name = 'ultisnips' },
-                    { name = 'buffer' },
+                    { name = 'buffer', keyword_length = 5 },
+                    { name = 'path' },
+                    { name = 'calc' },
                 })
             })
 
@@ -217,12 +237,6 @@ return require('packer').startup(function()
                     }
                 }
             }
-
-            vim.cmd [[
-                augroup LUA
-                    autocmd BufEnter plugins.lua :LspStop<CR>
-                augroup END
-            ]]
         end
     }
 
@@ -256,92 +270,92 @@ return require('packer').startup(function()
         end
     }
 
-    use { 'quangnguyen30192/cmp-nvim-ultisnips',
+    --use { 'quangnguyen30192/cmp-nvim-ultisnips',
 
-        config = function()
-            local cmp = require("cmp")
-            local has_any_words_before = function()
-              if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-                return false
-              end
-              local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-              return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-            end
+        --config = function()
+            --local cmp = require("cmp")
+            --local has_any_words_before = function()
+              --if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+                --return false
+              --end
+              --local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+              --return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            --end
 
-            local press = function(key)
-              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
-            end
+            --local press = function(key)
+              --vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
+            --end
 
-            cmp.setup({
-              snippet = {
-                expand = function(args)
-                  vim.fn["UltiSnips#Anon"](args.body)
-                end,
-              },
-              sources = {
-                { name = "ultisnips" },
-                -- more sources
-              },
-              -- Configure for <TAB> people
-              -- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
-              -- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
-              -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
-              -- - <C-space> to expand the selected snippet from completion menu
-              mapping = {
-                ["<C-Space>"] = cmp.mapping(function(fallback)
-                  if cmp.visible() then
-                    if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-                      return press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-                    end
+            --cmp.setup({
+              --snippet = {
+                --expand = function(args)
+                  --vim.fn["UltiSnips#Anon"](args.body)
+                --end,
+              --},
+              --sources = {
+                --{ name = "ultisnips" },
+                ---- more sources
+              --},
+              ---- Configure for <TAB> people
+              ---- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
+              ---- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
+              ---- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
+              ---- - <C-space> to expand the selected snippet from completion menu
+              --mapping = {
+                --["<C-Space>"] = cmp.mapping(function(fallback)
+                  --if cmp.visible() then
+                    --if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+                      --return press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
+                    --end
 
-                    cmp.select_next_item()
-                  elseif has_any_words_before() then
-                    press("<Space>")
-                  else
-                    fallback()
-                  end
-                end, {
-                  "i",
-                  "s",
-                  -- add this line when using cmp-cmdline:
-                  "c",
-                }),
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                  if cmp.get_selected_entry() == nil and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-                    press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-                  elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                    press("<ESC>:call UltiSnips#JumpForwards()<CR>")
-                  elseif cmp.visible() then
-                    cmp.select_next_item()
-                  elseif has_any_words_before() then
-                    press("<Tab>")
-                  else
-                    fallback()
-                  end
-                end, {
-                  "i",
-                  "s",
-                  -- add this line when using cmp-cmdline:
-                  "c",
-                }),
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
-                  if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-                    press("<ESC>:call UltiSnips#JumpBackwards()<CR>")
-                  elseif cmp.visible() then
-                    cmp.select_prev_item()
-                  else
-                    fallback()
-                  end
-                end, {
-                  "i",
-                  "s",
-                  -- add this line when using cmp-cmdline:
-                  "c",
-                }),
-              },
-            })
-      end
-    }
+                    --cmp.select_next_item()
+                  --elseif has_any_words_before() then
+                    --press("<Space>")
+                  --else
+                    --fallback()
+                  --end
+                --end, {
+                  --"i",
+                  --"s",
+                  ---- add this line when using cmp-cmdline:
+                  --"c",
+                --}),
+                --["<Tab>"] = cmp.mapping(function(fallback)
+                  --if cmp.get_selected_entry() == nil and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+                    --press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
+                  --elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                    --press("<ESC>:call UltiSnips#JumpForwards()<CR>")
+                  --elseif cmp.visible() then
+                    --cmp.select_next_item()
+                  --elseif has_any_words_before() then
+                    --press("<Tab>")
+                  --else
+                    --fallback()
+                  --end
+                --end, {
+                  --"i",
+                  --"s",
+                  ---- add this line when using cmp-cmdline:
+                  --"c",
+                --}),
+                --["<S-Tab>"] = cmp.mapping(function(fallback)
+                  --if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                    --press("<ESC>:call UltiSnips#JumpBackwards()<CR>")
+                  --elseif cmp.visible() then
+                    --cmp.select_prev_item()
+                  --else
+                    --fallback()
+                  --end
+                --end, {
+                  --"i",
+                  --"s",
+                  ---- add this line when using cmp-cmdline:
+                  --"c",
+                --}),
+              --},
+            --})
+      --end
+    --}
 
     use { 'windwp/nvim-ts-autotag',
 

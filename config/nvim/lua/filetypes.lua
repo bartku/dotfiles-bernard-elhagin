@@ -30,22 +30,26 @@ augroup END
 -- XML
 
 vim.cmd [[
-let g:xml_syntax_folding=1
-au BufEnter,BufCreate *.xml,*.wsdl,*.xslt,*.xsl set filetype=xml
-au FileType xml setlocal foldmethod=syntax
-au BufEnter,BufRead *.xml if search('nashornJs', 'nw') | setlocal ft=javascript | endif
+    let g:xml_syntax_folding=1
 
-" Format XML files with xmllint
-nnoremap =x :exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set filetype=xml<CR>
+    au BufEnter,BufCreate *.xml,*.wsdl,*.xslt,*.xsl set filetype=xml
+    au FileType xml setlocal foldmethod=syntax
+    au BufEnter,BufRead *.xml if search('nashornJs', 'nw') | setlocal ft=javascript | endif
 
-" Go to a sequence file in a WSO2 project
-nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
+    " Format XML files with xmllint
+    nnoremap =x :exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set filetype=xml<CR>
+
+    " Go to a sequence file in a WSO2 project
+    nnoremap <F9> :cd %:h<CR>yi":e ../sequences/".xml<CR>
 ]]
 
 -- Lua
 vim.cmd [[
-au FileType lua setlocal foldmethod=syntax
-au BufEnter plugins.lua LspStop
+augroup LSPSTOP
+    au!
+    au FileType lua setlocal foldmethod=syntax
+    au BufEnter,BufRead plugins.lua :LspStop<CR>
+augroup END
 ]]
 
 -- XSLT
