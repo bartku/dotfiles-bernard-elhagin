@@ -6,9 +6,9 @@ tmux_detached: false
 tmux: tmux
 windows:
   - vim:
-      layout: main-horizontal
+      layout: main-vertical
       panes:
-          - vim
+          - nvim
   - WSO2 EI 6.5.0:
       layout: main-horizontal
       panes:
