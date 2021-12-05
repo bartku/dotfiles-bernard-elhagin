@@ -1,10 +1,9 @@
--- init.lua
---
--- Author: Bernard El-Hagin <bernard.elhagin@gmail.com>
--- http://github.com/bernard-elhagin/dotfiles
-
-require('settings')   -- General settings
-require('mappings')   -- Mappings
-require('plugins')    -- Initialize plugins
-require('filetypes')  -- Settings for specific filetypes
-require('theme')      -- Color settings
+require 'user.plugins'
+require 'user.settings'
+require 'user.mappings'
+require 'user.cmp'
+require 'user.theme'
+require 'user.lualine'
+require 'user.treesitter'
+require 'user.lsp'
+require 'user.telescope'

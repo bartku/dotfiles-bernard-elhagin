@@ -1,1 +1,0 @@
-Plug 'bling/vim-airline'

@@ -20,7 +20,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 export VIM=$HOME/.vim
-export VIMRUNTIME=/usr/share/nvim/runtime
+export VIMRUNTIME=/usr/local/share/nvim/runtime
 
 [[ -f $HOME/.proxy.zsh ]] && source $HOME/.proxy.zsh
 

@@ -1,1 +1,0 @@
-Plug 'romainl/vim-cool'

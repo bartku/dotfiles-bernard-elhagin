@@ -1,1 +1,0 @@
-Plug 'sjl/gundo.vim'

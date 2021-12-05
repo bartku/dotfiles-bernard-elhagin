@@ -33,8 +33,7 @@ alias c='clear'
 alias tml='tmux list-sessions'
 alias tma='tmux attach-session -t'
 alias tx='tmuxinator start'
-alias txkb='tmuxinator start kafka_baltica_topics'
-alias txkt='tmuxinator start kafka_topics'
+alias tmu='tmuxinator start $(basename -s .yml $(ls ~/.tmuxinator | fzf))'
 
 # Global aliases
 alias -g G='| grep --color=always'
@@ -48,5 +47,6 @@ fi
 
 alias smart='~/Downloads/smartgit/bin/smartgit.sh &'
 
-alias nvim='export VIMRUNTIME=/usr/share/nvim/runtime && export VIM= && nvim'
+#alias nvim='export VIMRUNTIME=/usr/share/nvim/runtime && export VIM= && /home/bertold/bin/nvim.appimage'
+alias  n='nvim'
 alias  vim='nvim'

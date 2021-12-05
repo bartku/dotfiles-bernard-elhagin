@@ -1,1 +1,0 @@
-Plug 'idbrii/vim-endoscope'

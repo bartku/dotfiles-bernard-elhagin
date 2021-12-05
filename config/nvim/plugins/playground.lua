@@ -1,1 +1,0 @@
-Plug 'nvim-treesitter/playground'
