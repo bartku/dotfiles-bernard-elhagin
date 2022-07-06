@@ -3,6 +3,8 @@
     "Lua.diagnostics.globals": [
         "use",
         "vim",
-        "after"
+        "after",
+        "JAVA_DAP_ACTIVE",
+        "lsp_keymaps"
     ]
 }

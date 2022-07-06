@@ -56,6 +56,32 @@ return require('packer').startup(function()
     use 'romainl/vim-cool'
     use 'mhinz/vim-startify'
     use 'kevinhwang91/nvim-bqf'
+
+    use {
+        'norcalli/nvim-colorizer.lua',
+        event = 'BufEnter',
+        config = function()
+            local present, color = pcall(require, 'colorizer')
+            if not present then
+                return
+            end
+
+            color.setup {
+                '*',
+                css = { rgb_fn = true; }
+            }
+            vim.cmd('ColorizerAttachToBuffer')
+        end
+    }
+
+    use {
+        'unblevable/quick-scope',
+
+        config = function()
+            vim.g.qs_enable = 0 -- off by default
+        end
+    }
+
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -96,7 +122,6 @@ return require('packer').startup(function()
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
-    --use 'jose-elias-alvarez/null-ls.nvim'
     use 'simrat39/symbols-outline.nvim'
     use {
         'folke/trouble.nvim',

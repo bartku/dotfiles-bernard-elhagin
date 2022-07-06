@@ -146,6 +146,14 @@ _G.packer_plugins = {
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-colorizer.lua"] = {
+    config = { "\27LJ\2\nž\1\0\0\6\0\n\0\0176\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\1€K\0\1\0009\2\3\0015\4\4\0005\5\5\0=\5\6\4B\2\2\0016\2\a\0009\2\b\2'\4\t\0B\2\2\1K\0\1\0\28ColorizerAttachToBuffer\bcmd\bvim\bcss\1\0\1\vrgb_fn\2\1\2\0\0\6*\nsetup\14colorizer\frequire\npcall\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
   ["nvim-jdtls"] = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
@@ -200,6 +208,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["quick-scope"] = {
+    config = { "\27LJ\2\n+\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0\14qs_enable\6g\bvim\0" },
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/quick-scope",
+    url = "https://github.com/unblevable/quick-scope"
   },
   ["symbols-outline.nvim"] = {
     loaded = true,
@@ -275,12 +289,23 @@ time([[Config for Comment.nvim]], false)
 time([[Config for hop.nvim]], true)
 try_loadstring("\27LJ\2\nÛ\3\0\0\a\0\15\1\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0014\0\3\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\b\0'\5\t\0005\6\n\0B\1\5\2>\1\1\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\v\0'\5\f\0005\6\r\0B\1\5\0?\1\0\0007\0\14\0K\0\1\0\nafter\1\0\1\fnoremap\2ƒ\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<CR>\6M\1\0\1\fnoremap\2‚\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<CR>\6m\6n\20nvim_set_keymap\bapi\bvim\1\0\1\tkeys\17asdfjkl;weio\nsetup\bhop\frequire\5€€À™\4\0", "config", "hop.nvim")
 time([[Config for hop.nvim]], false)
+-- Config for: quick-scope
+time([[Config for quick-scope]], true)
+try_loadstring("\27LJ\2\n+\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0\14qs_enable\6g\bvim\0", "config", "quick-scope")
+time([[Config for quick-scope]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TroubleToggle lua require("packer.load")({'trouble.nvim'}, { cmd = "TroubleToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'nvim-colorizer.lua'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
