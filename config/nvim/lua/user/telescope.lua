@@ -24,6 +24,8 @@ telescope.setup {
                 ['<C-k>'] = actions.move_selection_previous,
 
                 ['<C-c>'] = actions.close,
+                ['<esc>'] = actions.close, -- one ESC to close Telescope
+                ['jk'] = actions.close,    -- close Telescope with jk
 
                 ['<Down>'] = actions.move_selection_next,
                 ['<Up>'] = actions.move_selection_previous,
