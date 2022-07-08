@@ -130,6 +130,9 @@ return require('packer').startup(function()
 
     use 'mfussenegger/nvim-jdtls'
 
+    -- Git
+    use 'kdheepak/lazygit.nvim'
+
     use { 'phaazon/hop.nvim',
 
         config = function()

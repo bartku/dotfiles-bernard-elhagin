@@ -5,8 +5,8 @@ vim.cmd [[
     "colorscheme kanagawa
     "colorscheme github
     "colorscheme edge
-    colorscheme archery
     "colorscheme space-vim-dark
+    colorscheme archery
 
     hi Pmenu  gui=bold guifg=hotpink guibg=#123456
     hi Visual gui=bold guifg=#F6F9FC guibg=#0088CC
