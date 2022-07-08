@@ -8,6 +8,10 @@ local servers = {
     'sumneko_lua',
     'tsserver',
     'lemminx',
+    'pyright',
+    'perlnavigator',
+    'bashls',
+    'jsonls',
 }
 
 local settings = {
