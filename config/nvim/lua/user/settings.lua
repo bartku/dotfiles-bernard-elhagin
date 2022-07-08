@@ -53,6 +53,7 @@ o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldlevelstart = 666
 o.foldcolumn = '0'
 o.startofline = true
+o.signcolumn = 'yes'
 
 o.fillchars = 'diff:∙'              -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 o.fillchars:append('fold:•')        -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
