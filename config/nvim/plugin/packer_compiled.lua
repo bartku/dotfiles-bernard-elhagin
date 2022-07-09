@@ -131,6 +131,11 @@ _G.packer_plugins = {
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
+    url = "https://github.com/kdheepak/lazygit.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -277,6 +282,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vim-vinegar",
     url = "https://github.com/tpope/vim-vinegar"
+  },
+  ["vscode.nvim"] = {
+    loaded = true,
+    path = "/home/bertold/.local/share/nvim/site/pack/packer/start/vscode.nvim",
+    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 
@@ -285,14 +295,14 @@ time([[Defining packer_plugins]], false)
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\nÛ\3\0\0\a\0\15\1\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0014\0\3\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\b\0'\5\t\0005\6\n\0B\1\5\2>\1\1\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\v\0'\5\f\0005\6\r\0B\1\5\0?\1\0\0007\0\14\0K\0\1\0\nafter\1\0\1\fnoremap\2ƒ\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<CR>\6M\1\0\1\fnoremap\2‚\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<CR>\6m\6n\20nvim_set_keymap\bapi\bvim\1\0\1\tkeys\17asdfjkl;weio\nsetup\bhop\frequire\5€€À™\4\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
 -- Config for: quick-scope
 time([[Config for quick-scope]], true)
 try_loadstring("\27LJ\2\n+\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0\14qs_enable\6g\bvim\0", "config", "quick-scope")
 time([[Config for quick-scope]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+try_loadstring("\27LJ\2\nÛ\3\0\0\a\0\15\1\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0014\0\3\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\b\0'\5\t\0005\6\n\0B\1\5\2>\1\1\0006\1\4\0009\1\5\0019\1\6\1'\3\a\0'\4\v\0'\5\f\0005\6\r\0B\1\5\0?\1\0\0007\0\14\0K\0\1\0\nafter\1\0\1\fnoremap\2ƒ\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<CR>\6M\1\0\1\fnoremap\2‚\1<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<CR>\6m\6n\20nvim_set_keymap\bapi\bvim\1\0\1\tkeys\17asdfjkl;weio\nsetup\bhop\frequire\5€€À™\4\0", "config", "hop.nvim")
+time([[Config for hop.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
