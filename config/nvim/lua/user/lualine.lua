@@ -6,8 +6,8 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-    --bg       = '#202328',
-    bg       = '#121212',
+    bg       = '#202328',
+    --bg       = '#121212',
     fg       = '#bbc2cf',
     yellow   = '#ECBE7B',
     cyan     = '#008080',
@@ -127,7 +127,7 @@ ins_left {
         }
         return { fg = mode_color[vim.fn.mode()] }
     end,
-    padding = { right = 1 },
+    padding = { left = 1 },
 }
 
 ins_left {
@@ -212,7 +212,7 @@ ins_right {
 ins_right {
     'diff',
     -- Is it me or the symbol for modified us really weird
-    symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+    symbols = { added = ' ', modified = '', removed = ' ' },
     diff_color = {
         added = { fg = colors.green },
         modified = { fg = colors.orange },
