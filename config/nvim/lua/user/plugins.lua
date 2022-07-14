@@ -107,6 +107,8 @@ return require('packer').startup(function()
     -- snippets
     use 'L3MON4D3/LuaSnip'
     use 'rafamadriz/friendly-snippets'
+    use 'kana/vim-textobj-user'
+    use 'kana/vim-textobj-entire'
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
