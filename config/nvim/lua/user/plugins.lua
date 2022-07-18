@@ -48,6 +48,7 @@ return require('packer').startup(function()
     use 'bluz71/vim-nightfly-guicolors'
     use 'bluz71/vim-moonfly-colors'
     use 'Mofiqul/vscode.nvim'
+    use 'rebelot/kanagawa.nvim'
 
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'

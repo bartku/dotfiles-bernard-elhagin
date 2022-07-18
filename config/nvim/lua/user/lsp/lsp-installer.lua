@@ -12,6 +12,8 @@ local servers = {
     'perlnavigator',
     'bashls',
     'jsonls',
+    'html',
+    'emmet_ls',
 }
 
 local settings = {
