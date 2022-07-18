@@ -3,14 +3,14 @@
 
 #Needed for i3-gaps
 hide_edge_borders both
-for_window [class="^.*"] border pixel 1 
-gaps inner 15 
+for_window [class="^.*"] border pixel 1
+gaps inner 15
 gaps outer 15
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 set $term xfce4-terminal
-set $browser opera
+set $browser Chromium
 set $mail mutt
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -38,7 +38,7 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # Frequently run programs
-bindsym $mod+v exec $term -e 'vim'
+bindsym $mod+v exec $term -e 'nvim'
 bindsym $mod+Ctrl+r exec $term -e 'ranger'
 
 # start a terminal
@@ -150,7 +150,6 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
@@ -209,6 +208,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 assign [class="Pale moon"] $ws2
+assign [class="Chromium"] $ws2
 assign [class="Firefox"] $ws2
 # assign [class="Pcmanfm"] $ws3
 assign [class="vlc"] $ws3
@@ -269,10 +269,10 @@ mode "resize" {
         bindsym odiaeresis resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym  Left  resize  shrink  width  10  px  or  10  ppt
-        bindsym  Down  resize  grow   height  10  px  or  10  ppt
-        bindsym  Up   resize  shrink  height  10  px  or  10  ppt
-        bindsym  Right  resize  grow   width  10  px  or  10  ppt
+        bindsym  Left  resize  shrink  width  5  px  or  5  ppt
+        bindsym  Down  resize  grow   height  5  px  or  5  ppt
+        bindsym  Up   resize  shrink  height  5  px  or  5  ppt
+        bindsym  Right  resize  grow   width  5  px  or  5  ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
@@ -322,12 +322,12 @@ set $c_magenta_l  #d3869b
 set $c_cyan_d     #689d6a
 set $c_cyan_l     #8ec07c
 
-#class					background?		border			text			split
-client.focused			$c_black_l		$c_black_l		$c_white_d		$c_white_d
-client.focused_inactive	$c_background	$c_background	$c_black_l		$c_black_d
-client.unfocused		$c_black_d		$c_background	$c_white_d		$c_black_d
-client.urgent			$c_red_d		$c_red_d		$c_foreground	$c_red_d
-client.background		$c_background
+#class                  background?     border          text            split
+client.focused          $c_black_l      $c_black_l      $c_white_d      $c_white_d
+client.focused_inactive $c_background   $c_background   $c_black_l      $c_black_d
+client.unfocused        $c_black_d      $c_background   $c_white_d      $c_black_d
+client.urgent           $c_red_d        $c_red_d        $c_foreground   $c_red_d
+client.background       $c_background
 
 #############################
 ### settings for i3-gaps: ###
@@ -345,7 +345,7 @@ gaps outer 2
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps off
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders no_gaps
 
@@ -394,42 +394,28 @@ bindsym XF86AudioPrev exec mpc prev
 exec xmodmap -e "clear lock" # disable Caps Lock
 exec xmodmap -e "keysym Caps_Lock = Escape" # set Caps Lock to Esc
 
-#bar {
-#        #This status command requires bumblebee-status. You must change it to your desired settings!
-#        #   https://github.com/tobi-wan-kenobi/bumblebee-status
-#        font xft:Terminus Regular 9
-#        status_command bumblebee-status -m battery nic disk datetime -p disk.path=/home datetime.format="%a, %b %d, %Y at %I:%M %P"
-#        position top
-#}
 bar {
     font xft:xos4 Terminus Regular 9
-	position top
-	set height 16
-	tray_output none
-	status_command bumblebee-status -m caffeine pasource pasink date time -p date.format="%a, %d. %b %Y" time.format="%H:%M:%S" weather.apikey="9c672428ac92772c6437191a43a5b13f" -t gruvbox-powerline
+    position top
+    set height 16
+    tray_output none
+    status_command bumblebee-status -m caffeine pasource pasink date time -p date.format="%a, %d. %b %Y" time.format="%H:%M:%S" weather.apikey="9c672428ac92772c6437191a43a5b13f" -t gruvbox-powerline
     colors{
         background #232323
         statusline #DCDCDC
     }
-#	colors {
-#		background #1d2021
-#		focused_workspace  #cb9e83 #665c54 #ebdbb2
-#		active_workspace   #665c54 #463c34 #dbae93
-#		inactive_workspace #383838 #1d2021 #766c64
-#		urgent_workspace   #fb4934 #cc241d #ebdbb2
-#	}
 }
 
 bar {
     font xft:xos4 Terminus Regular 9
-	position bottom
-	set height 16
-	status_command bumblebee-status -m nic cpu memory -t gruvbox-powerline
-	colors {
-		background #1d2021
-		focused_workspace  #cb9e83 #665c54 #ebdbb2
-		active_workspace   #665c54 #463c34 #dbae93
-		inactive_workspace #383838 #1d2021 #766c64
-		urgent_workspace   #fb4934 #cc241d #ebdbb2
-	}
+    position bottom
+    set height 16
+    status_command bumblebee-status -m nic cpu memory -t gruvbox-powerline
+    colors {
+        background #1d2021
+        focused_workspace  #cb9e83 #665c54 #ebdbb2
+        active_workspace   #665c54 #463c34 #dbae93
+        inactive_workspace #383838 #1d2021 #766c64
+        urgent_workspace   #fb4934 #cc241d #ebdbb2
+    }
 }
