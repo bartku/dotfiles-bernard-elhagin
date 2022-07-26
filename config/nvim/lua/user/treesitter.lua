@@ -6,6 +6,25 @@ end
 local ft_to_parser = require'nvim-treesitter.parsers'.filetype_to_parsername
 ft_to_parser.motoko = 'typescript'
 
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+  },
+}
+
 configs.setup({
     ensure_installed = 'all', -- one of 'all' or a list of languages
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
