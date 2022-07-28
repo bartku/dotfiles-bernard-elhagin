@@ -208,6 +208,6 @@ alias webqa2="ssh el-hbe1@10.111.218.194"
 alias esb='$HOME/Devel/wso2ei-6.3.0/bin/integrator.sh'
 
 # SSH to work computer from home
-alias sshp='ssh -p 3022 bertold@10.111.18.81'
+alias sshp='ssh el-hbe1@10.100.36.108'
 
 # ]]]
