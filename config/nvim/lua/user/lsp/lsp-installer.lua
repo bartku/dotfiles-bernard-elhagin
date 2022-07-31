@@ -13,7 +13,8 @@ local servers = {
     'bashls',
     'jsonls',
     'html',
-    'emmet_ls',
+    'tailwindcss',
+    'arduino_language_server',
 }
 
 local settings = {

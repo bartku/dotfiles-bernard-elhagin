@@ -7,7 +7,9 @@ vim.cmd [[
     "colorscheme edge
     "colorscheme space-vim-dark
     "colorscheme archery
-    colorscheme vscode
+    "colorscheme vscode
+    "colorscheme dracula
+    colorscheme hilal
 
     " hi Pmenu  gui=bold guifg=hotpink guibg=#123456
     " hi Visual gui=bold guifg=#F6F9FC guibg=#0088CC

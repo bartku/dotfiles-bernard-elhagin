@@ -136,4 +136,5 @@ map('n', '<leader>cc', ':CommentToggle<CR>')
 map('v', '<leader>cc', ":'<,'>CommentToggle<CR>")
 
 -- TrueZen
-map('n', '<leader>zz', ':TZAtaraxis<CR>')
+map('n', '<leader>n', ':TZNarrow<CR>')
+map('v', '<leader>n', ":'<,'>TZNarrow<CR>")

@@ -171,9 +171,9 @@ alias ct=consume_topic
 # ]]]
 
 # WSO2 SSH aliases [[[
-alias wd1='ssh -t logviewer@10.111.230.247 "cd logs; bash"'
-alias wd2='ssh -t logviewer@10.111.230.248 "cd logs; bash"'
-alias wdm='ssh -t logviewer@10.111.230.249 "cd logs; bash"'
+alias wd1='ssh -oHostKeyAlgorithms=+ssh-dss -t logviewer@10.111.230.247 "cd logs; bash"'
+alias wd2='ssh -oHostKeyAlgorithms=+ssh-dss -t logviewer@10.111.230.248 "cd logs; bash"'
+alias wdm='ssh -oHostKeyAlgorithms=+ssh-dss -t logviewer@10.111.230.249 "cd logs; bash"'
 alias wt1='ssh -t logviewer@10.200.70.46   "cd logs; bash"'
 alias wt2='ssh -t logviewer@10.200.70.47   "cd logs; bash"'
 alias wtm='ssh -t logviewer@10.200.70.48   "cd logs; bash"'

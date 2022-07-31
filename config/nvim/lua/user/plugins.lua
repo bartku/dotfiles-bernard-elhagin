@@ -49,6 +49,9 @@ return require('packer').startup(function()
     use 'bluz71/vim-moonfly-colors'
     use 'Mofiqul/vscode.nvim'
     use 'rebelot/kanagawa.nvim'
+    use 'catppuccin/nvim'
+    use 'Mofiqul/dracula.nvim'
+    use 'flazz/vim-colorschemes'
 
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -151,6 +154,8 @@ return require('packer').startup(function()
             }
         end
     }
+
+    use 'Pocco81/true-zen.nvim'
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()
