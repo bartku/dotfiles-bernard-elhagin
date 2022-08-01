@@ -95,6 +95,10 @@ map('n', '<leader>w',":%s/\\s\\+$//<CR>")
 
 map('n', '<F10>', ':TSHighlightCapturesUnderCursor<CR>')
 
+-- select previously modified or pasted text
+map('n', '<C-p>', "'[v']")
+map('n', '<C-l>', "']")
+
 -- Packer
 map('n', '<leader>pc', ':PackerCompile<CR>', { noremap = true })
 map('n', '<leader>pi', ':PackerInstall<CR>', { noremap = true })
