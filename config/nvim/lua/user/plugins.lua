@@ -61,6 +61,7 @@ return require('packer').startup(function()
     use 'romainl/vim-cool'
     use 'mhinz/vim-startify'
     use 'kevinhwang91/nvim-bqf'
+    use 'Pocco81/true-zen.nvim'
 
     use {
         'norcalli/nvim-colorizer.lua',
@@ -155,7 +156,12 @@ return require('packer').startup(function()
         end
     }
 
-    use 'Pocco81/true-zen.nvim'
+    use {
+        'folke/which-key.nvim',
+        config = function()
+            require('which-key').setup { }
+        end
+    }
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()

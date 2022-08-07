@@ -96,7 +96,7 @@ map('n', '<leader>w',":%s/\\s\\+$//<CR>")
 map('n', '<F10>', ':TSHighlightCapturesUnderCursor<CR>')
 
 -- select previously modified or pasted text
-map('n', '<C-p>', "'[v']")
+map('n', '<C-p>', "'[V']")
 map('n', '<C-l>', "']")
 
 -- Packer

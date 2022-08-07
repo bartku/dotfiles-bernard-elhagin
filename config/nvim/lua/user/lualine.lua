@@ -7,7 +7,6 @@ local lualine = require('lualine')
 -- stylua: ignore
 local colors = {
     bg       = '#202328',
-    --bg       = '#121212',
     fg       = '#bbc2cf',
     yellow   = '#ECBE7B',
     cyan     = '#008080',
@@ -152,8 +151,8 @@ ins_left {
     symbols = { error = ' ', warn = ' ', info = ' ' },
     diagnostics_color = {
         color_error = { fg = colors.red },
-        color_warn = { fg = colors.yellow },
-        color_info = { fg = colors.cyan },
+        color_warn  = { fg = colors.yellow },
+        color_info  = { fg = colors.cyan },
     },
 }
 
