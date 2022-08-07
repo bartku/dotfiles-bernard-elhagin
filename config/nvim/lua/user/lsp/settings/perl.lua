@@ -1,7 +1,7 @@
 require'lspconfig'.perlnavigator.setup {
     settings = {
         perlnavigator = {
-            perlPath = 'perl',
+            perlPath = '/usr/bin/perl',
             enableWarnings = true,
             perltidyProfile = '',
             perlcriticProfile = '',

@@ -60,7 +60,7 @@ local function lsp_highlight_document(client)
 end
 
 M.on_attach = function(client, bufnr)
-    -- TODO: refactor this into a method that checks if string in list
+    -- TODO: refactor this into a method that checks if string is in list
 
     local status_ok, aerial = pcall(require, 'aerial')
     if not status_ok then
