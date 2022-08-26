@@ -89,6 +89,8 @@ map('o', 'i/', ':<C-U>normal! T/vt/<CR>', noresi)
 map('o', 'a/', ':<C-U>normal! F/vf/<CR>', noresi)
 map('x', 'i/', ':<C-U>normal! T/vt/<CR>', noresi)
 map('x', 'a/', ':<C-U>normal! F/vf/<CR>', noresi)
+
+-- create text-object between | |
 map('o', 'i|', ':<C-U>normal! T|vt|<CR>', noresi)
 map('o', 'a|', ':<C-U>normal! F|vf|<CR>', noresi)
 map('x', 'i|', ':<C-U>normal! T|vt|<CR>', noresi)
@@ -150,3 +152,6 @@ map('v', '<leader>cc', ":'<,'>CommentToggle<CR>")
 -- TrueZen
 map('n', '<leader>n', ':TZNarrow<CR>')
 map('v', '<leader>n', ":'<,'>TZNarrow<CR>")
+
+-- XML formatting
+map('n', '=x', ':exe ":silent %!xmllint --format --recover - 2>/dev/null"<CR>:set filetype=xml<CR>', noresi)
