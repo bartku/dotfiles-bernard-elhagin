@@ -48,5 +48,5 @@ fi
 alias smart='~/Downloads/smartgit/bin/smartgit.sh &'
 
 #alias nvim='export VIMRUNTIME=/usr/share/nvim/runtime && export VIM= && /home/bertold/bin/nvim.appimage'
-alias  n='nvim'
-alias  vim='nvim'
+alias  nvim='export VIMRUNTIME=/usr/share/nvim/runtime && \nvim'
+alias  vim='export VIMRUNTIME=/usr/share/vim/vim90 && \vim'

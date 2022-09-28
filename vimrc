@@ -45,8 +45,6 @@ Plug 'sukima/xmledit'
 Plug 'whiteinge/diffconflicts'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/CSApprox'
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'dyng/ctrlsf.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdcommenter'
@@ -61,15 +59,12 @@ Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'markonm/traces.vim'
 Plug 'tommcdo/vim-lion'
 Plug 'preservim/tagbar'
-Plug 'rhysd/clever-f.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'thinca/vim-textobj-between'
 Plug 'idbrii/vim-endoscope'
 Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
 Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
 
@@ -206,6 +201,8 @@ let maplocalleader='\\'
 
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 nnoremap <leader>s :w<CR>
 
@@ -227,16 +224,19 @@ nnoremap <leader>p :set paste!<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-l> <C-w>l
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
-nnoremap <leader>l <C-w>l
+"nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>x <C-w>c
 nnoremap <leader>o <C-w>o
 nnoremap <leader>_ <C-w>_
 
+noremap <c-p> yap']p
+
 nnoremap <leader>q :QuickScopeToggle<CR>
+let g:qs_enable = 0
 
 " Set CWD to current file's PWD
 noremap <F12> :cd %:h<CR>
@@ -252,7 +252,6 @@ nnoremap <F7> :tabprev<CR>
 
 " Fold all, unfold all
 nnoremap <leader>e :call Fold()<CR>
-
 function! Fold()
     let foldlvl = eval("&foldlevel")
     if(foldlvl==0)
@@ -376,6 +375,7 @@ nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <
 " Map dot to repeat last edit over entire visual selection
 xmap . :normal .<CR>
 
+xmap <c-t> ;Tabularize / \s*<CR>
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -449,14 +449,17 @@ let g:airline_theme='papercolor'
 "colorscheme hilal
 "colorscheme dracula
 "colorscheme nord
-colorscheme ayu
+"colorscheme ayu
+colorscheme nordfox
 
 set bg=dark
 
-"hi Normal guibg=black
+hi Normal guibg=grey10
+hi CursorLineNr cterm=none
+hi String guifg=hotpink
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
-hi String guifg=hotpink
+hi CursorLine cterm=none term=none
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
 hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
@@ -683,15 +686,6 @@ let g:rainbow_active=1
 "endfunction
 "
 " ]]]
-" vim-tmux-navigator [[[
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-
-"]]]
 " auto-pairs [[[
 let g:AutoPairsFlyMode = 0
 "]]]

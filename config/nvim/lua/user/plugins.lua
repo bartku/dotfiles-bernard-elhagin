@@ -52,16 +52,23 @@ return require('packer').startup(function()
     use 'catppuccin/nvim'
     use 'Mofiqul/dracula.nvim'
     use 'flazz/vim-colorschemes'
+    use 'EdenEast/nightfox.nvim'
 
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'tpope/vim-vinegar'
     use 'tpope/vim-repeat'
-    use 'machakann/vim-sandwich'
     use 'romainl/vim-cool'
     use 'mhinz/vim-startify'
     use 'kevinhwang91/nvim-bqf'
     use 'Pocco81/true-zen.nvim'
+
+    use {
+        'windwp/nvim-autopairs',
+        config = function()
+            require('nvim-autopairs').setup{}
+        end
+    }
 
     use {
         'norcalli/nvim-colorizer.lua',
@@ -159,7 +166,7 @@ return require('packer').startup(function()
     use {
         'folke/which-key.nvim',
         config = function()
-            require('which-key').setup { }
+            --require('which-key').setup { }
         end
     }
 

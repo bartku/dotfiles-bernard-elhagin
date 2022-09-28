@@ -27,7 +27,7 @@ map('n', '<leader>so', ':so %<CR>')
 -- paste the contents of the clipboard
 map('n', '<C-Space>', '"*p')
 -- copy whole buffer to clipboard and quit
-map('n', '<CS-Space>', 'gg"*yG:q!<CR>')
+map('n', '<M-Space>', 'gg"*yG:q!<CR>')
 
 -- run previous shell command
 map('n', '<leader>r', ':!<UP><CR>')
@@ -124,6 +124,7 @@ map('n', '<leader>yh', ':Telescope command_history<CR>')
 map('n', '<leader>yr', ':Telescope registers<CR>')
 map('n', '<leader>b',  ':Telescope buffers<CR>')
 map('n', '<leader>fv', ':Telescope help_tags<CR>')
+map('n', '<c-h>',      ':Telescope help_tags<CR>')
 -- map('n', '<leader>ff', ':Telescope find_files find_command=rg,--follow,--hidden,--files<CR>')
 -- map('n', '<leader>ff', ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>")
 map('n', '<leader>ff', ":lua require('telescope.builtin').find_files(require('telescope').setup{ defaults = { layout_strategy = 'vertical', layout_config = { height = 0.90, preview_height = 0 } } })<CR>")
