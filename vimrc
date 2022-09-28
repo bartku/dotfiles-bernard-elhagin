@@ -45,7 +45,6 @@ Plug 'sukima/xmledit'
 Plug 'whiteinge/diffconflicts'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/CSApprox'
-Plug 'dyng/ctrlsf.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier'
@@ -59,11 +58,15 @@ Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'markonm/traces.vim'
 Plug 'tommcdo/vim-lion'
 Plug 'preservim/tagbar'
+"Plug 'kana/vim-textobj-user'
+"Plug 'kana/vim-textobj-entire'
+"Plug 'thinca/vim-textobj-between'
 Plug 'idbrii/vim-endoscope'
 Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
 Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'preservim/vim-markdown'
 Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
@@ -181,9 +184,6 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
                    \|     exe "normal! g`\""
                    \|  endif
 
-" Name tmux window with currently edited filename
-" autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 
 syntax enable
@@ -203,6 +203,8 @@ nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
+
+vnoremap ; :
 
 nnoremap <leader>s :w<CR>
 
@@ -225,9 +227,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 "nnoremap <C-l> <C-w>l
+
 nnoremap <leader>j <C-w>j
 nnoremap <leader>k <C-w>k
-"nnoremap <leader>l <C-w>l
+nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>x <C-w>c
 nnoremap <leader>o <C-w>o
@@ -260,8 +263,6 @@ function! Fold()
         set foldlevel=0
     endif
 endfunction
-
-"map 0 ^
 
 " Toggle hls and matching with the <leader>N utility
 "map <CR> :set hls!<CR>
@@ -334,6 +335,10 @@ onoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>
 
 xnoremap <silent> iy :<C-U>execute "normal!?^---\r:nohlsearch\rjV/^---\rk"<cr>
 xnoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>
+
+" Copy whole paragraph and paste copy below it
+map <c-p> yap']p
+
 " Go into mergetool mode
 "map <leader>d :call DiffToolMode()<CR>
 
@@ -355,8 +360,8 @@ inoremap . .<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+"vnoremap J :m '>+1<CR>gv=gv
+"vnoremap K :m '<-2<CR>gv=gv
 inoremap <C-j> <esc>:m .+1<CR>==
 inoremap <C-k> <esc>:m .-2<CR>==
 nnoremap <leader>k :m .-2<CR>==
@@ -376,6 +381,8 @@ nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <
 xmap . :normal .<CR>
 
 xmap <c-t> ;Tabularize / \s*<CR>
+
+map <c-u> 
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -446,11 +453,10 @@ endif
 let g:airline_theme='papercolor'
 
 "colorscheme herokudoc
-"colorscheme hilal
 "colorscheme dracula
 "colorscheme nord
 "colorscheme ayu
-colorscheme nordfox
+colorscheme nightfox
 
 set bg=dark
 
@@ -460,6 +466,7 @@ hi String guifg=hotpink
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
 hi CursorLine cterm=none term=none
+hi String guifg=hotpink
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red
 hi QuickScopeSecondary cterm=underline,bold gui=underline,bold ctermfg=cyan guifg=cyan
@@ -686,9 +693,6 @@ let g:rainbow_active=1
 "endfunction
 "
 " ]]]
-" auto-pairs [[[
-let g:AutoPairsFlyMode = 0
-"]]]
 " DiffConflicts [[[
     "map <leader>dd  :DiffConflicts<cr>
     "map <leader>dsh :DiffConflictsShowHistory<cr>
@@ -709,7 +713,9 @@ let g:AutoPairsFlyMode = 0
     let g:arduino_home_dir = '/home/bertold/.arduino15'
     let g:arduino_args = '--verbose-upload'
 " ]]]
-
+" Tabularize [[[
+    vmap <c-t> :Tabularize / \s*<cr>
+" ]]]
 "]]]
 
 " Utilities -------------------------------------------------------------- [[[

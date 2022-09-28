@@ -43,7 +43,7 @@ return require('packer').startup(function()
 
     require('impatient')
 
-    -- Color schemes
+    -- Color themes
     use 'rafi/awesome-vim-colorschemes'
     use 'bluz71/vim-nightfly-guicolors'
     use 'bluz71/vim-moonfly-colors'
@@ -53,6 +53,7 @@ return require('packer').startup(function()
     use 'Mofiqul/dracula.nvim'
     use 'flazz/vim-colorschemes'
     use 'EdenEast/nightfox.nvim'
+    use 'ofirgall/ofirkai.nvim'
 
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -166,7 +167,7 @@ return require('packer').startup(function()
     use {
         'folke/which-key.nvim',
         config = function()
-            --require('which-key').setup { }
+           --require('which-key').setup { }
         end
     }
 

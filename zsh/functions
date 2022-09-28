@@ -53,7 +53,6 @@ _zlf() {
     }
 }
 zle -N _zlf
-bindkey '\el' _zlf
 
 _zlf_handler() {
     emulate -L zsh
@@ -72,4 +71,6 @@ my-expand() {
     zle _expand_alias || zle _expand_word || true;
 }
 zle -N my-expand
+
+bindkey '\el' _zlf
 bindkey '^ ' my-expand

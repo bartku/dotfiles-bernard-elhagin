@@ -15,6 +15,7 @@ local servers = {
     'html',
     'tailwindcss',
     'arduino_language_server',
+    'clangd',
 }
 
 local settings = {

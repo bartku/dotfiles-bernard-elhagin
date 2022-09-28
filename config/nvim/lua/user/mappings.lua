@@ -52,7 +52,7 @@ map('v', '<leader>z', 'za')
 
 map('n', 'H', '^')
 map('v', 'H', '^')
-map('n', 'L', '$')
+map('n', 'L', 'g_')
 map('v', 'L', 'g_')
 
 map('i', '{{', '{' .. '<enter>' .. '}<ESC>O')
@@ -109,6 +109,9 @@ map('n', '<C-l>', "'[V']")
 
 map('n', '<M-l>', "']")
 
+-- Ctrl-]
+map('n', '<c-u>', '')
+
 -- Packer
 map('n', '<leader>pc', ':PackerCompile<CR>', { noremap = true })
 map('n', '<leader>pi', ':PackerInstall<CR>', { noremap = true })
@@ -123,17 +126,14 @@ map('n', '<leader>yb', ':Telescope git_branches<CR>')
 map('n', '<leader>yh', ':Telescope command_history<CR>')
 map('n', '<leader>yr', ':Telescope registers<CR>')
 map('n', '<leader>b',  ':Telescope buffers<CR>')
-map('n', '<leader>fv', ':Telescope help_tags<CR>')
 map('n', '<c-h>',      ':Telescope help_tags<CR>')
--- map('n', '<leader>ff', ':Telescope find_files find_command=rg,--follow,--hidden,--files<CR>')
--- map('n', '<leader>ff', ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>")
 map('n', '<leader>ff', ":lua require('telescope.builtin').find_files(require('telescope').setup{ defaults = { layout_strategy = 'vertical', layout_config = { height = 0.90, preview_height = 0 } } })<CR>")
 
 -- Lsp
 map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>',                         noresi)
 map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>',                          noresi)
 map('n', 'K',  ':lua vim.lsp.buf.hover()<CR>',                               noresi)
-map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>',                      noresi)
+map('n', 'gI', ':lua vim.lsp.buf.implementation()<CR>',                      noresi)
 --map('n', '<leader>wa', ':lua vim.lsp.buf.add_workspace_folder()<CR>',        noresi)
 --map('n', '<leader>wr', ':lua vim.lsp.buf.remove_workspace_folder()<CR>',     noresi)
 map('n', '<leader>D', ':lua vim.lsp.buf.type_definition()<CR>',              noresi)
