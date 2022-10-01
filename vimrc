@@ -32,10 +32,8 @@ Plug 'sjl/gundo.vim'
 Plug 'godlygeek/tabular'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Valloric/MatchTagAlways'
-Plug 'gregsexton/gitv'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -203,8 +201,6 @@ nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-
-vnoremap ; :
 
 nnoremap <leader>s :w<CR>
 
@@ -380,9 +376,9 @@ nnoremap <leader>d :new \| read ! sdcv <c-r><c-w> <cr>:call ScratchBufferize() <
 " Map dot to repeat last edit over entire visual selection
 xmap . :normal .<CR>
 
-xmap <c-t> ;Tabularize / \s*<CR>
-
 map <c-u> 
+
+noremap <c-m> m
 " ]]]
 
 " Folding ---------------------------------------------------------------- [[[
@@ -714,7 +710,7 @@ let g:rainbow_active=1
     let g:arduino_args = '--verbose-upload'
 " ]]]
 " Tabularize [[[
-    vmap <c-t> :Tabularize / \s*<cr>
+    vmap <c-t> ;Tabularize / \s*<cr>
 " ]]]
 "]]]
 

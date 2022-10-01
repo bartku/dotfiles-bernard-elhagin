@@ -104,11 +104,6 @@ map('n', '<F10>', ':TSHighlightCapturesUnderCursor<CR>')
 -- copy-paste whole paragraph
 map('n', '<C-p>', "yap'[V']y']p")
 
--- select previously modified or pasted text
-map('n', '<C-l>', "'[V']")
-
-map('n', '<M-l>', "']")
-
 -- Ctrl-]
 map('n', '<c-u>', '')
 
@@ -134,8 +129,6 @@ map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>',                         nor
 map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>',                          noresi)
 map('n', 'K',  ':lua vim.lsp.buf.hover()<CR>',                               noresi)
 map('n', 'gI', ':lua vim.lsp.buf.implementation()<CR>',                      noresi)
---map('n', '<leader>wa', ':lua vim.lsp.buf.add_workspace_folder()<CR>',        noresi)
---map('n', '<leader>wr', ':lua vim.lsp.buf.remove_workspace_folder()<CR>',     noresi)
 map('n', '<leader>D', ':lua vim.lsp.buf.type_definition()<CR>',              noresi)
 map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>',                      noresi)
 map('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>',                 noresi)
@@ -143,7 +136,6 @@ map('n', 'gr', ':lua vim.lsp.buf.references()<CR>',                          nor
 map('n', '[d', ':lua vim.lsp.diagnostic.goto_prev()<CR>',                    noresi)
 map('n', ']d', ':lua vim.lsp.diagnostic.goto_next()<CR>',                    noresi)
 map('n', '<leader>e', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', noresi)
---map('n', '<leader>wl', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', noresi)
 map('n', '<c-s>', ':LspStop<CR>', noresi)
 
 -- Neoformat
