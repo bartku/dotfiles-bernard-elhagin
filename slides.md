@@ -6,15 +6,23 @@
    3. Operators
    4. Text objects
    5. Combining operators with motions and text objects
+      -- deleting   (d)
+      -- changing   (c)
+      -- yanking    (y)
+      -- indenting  (>)
+      -- outdenting (<)
+      -- uppercase  (gU)
+      -- lowercase  (gu)
 
 
 ---
 
 # How and why Vim is unique
 
-  1. The [ADM-3A](https://upload.wikimedia.org/wikipedia/commons/7/77/Adm3aimage.jpg)
-  2. Keyboard layout - the home row ASDF JKL;
-  3. Dealing with ESC
+  1. Vi + Improved = Vim
+  2. The [ADM-3A](https://upload.wikimedia.org/wikipedia/commons/7/77/Adm3aimage.jpg)
+  3. Keyboard layout - the home row ASDF JKL;
+  4. Dealing with ESC
 
 
 >:help develop.txt
@@ -64,6 +72,20 @@
   14. *at*      around  <tag/>
 
   >:help text-objects
+
+---
+
+# Operator + motion/text-object
+
+  1.  *diw*     delete inside word
+  2.  *daw*     delete around word
+  5.  *cip*     change inside paragraph
+  6.  *cap*     change around paragraph
+  7.  *yi{*     yank inside  { }
+  8.  *ya{*     yank around  { }
+  9.  *gUi"*    make everything in " " UPPERCASE
+  10. *>ip*     indent inside paragraph
+
 
 ---
 

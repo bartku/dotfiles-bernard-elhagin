@@ -103,7 +103,7 @@ declare -a FILES_TO_SYMLINK=(
   'fzf.sh'
   'vimrc'
   'tmux/tmux.conf'
-  'tmux.conf.local'
+  'tmux/tmux.conf.local'
   'zsh/functions'
   'zsh/aliases_home.zsh'
   'zsh/aliases_work.zsh'
