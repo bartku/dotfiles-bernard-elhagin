@@ -1,0 +1,26 @@
+# /home/bertold/.config/tmuxinator/vimtraining.yml
+
+name: vimtraining
+root: ~/bin
+tmux_detached: false
+tmux: tmux
+
+startup_window: SLIDES
+
+windows:
+  - SLIDES:
+      layout: main-horizontal
+      panes:
+          - mdp /home/bertold/dotfiles/slides.md
+  - VIM:
+      layout: main-horizontal
+      panes:
+          - cd /home/bertold/Devel/Projects/VIMTraining/Practice && vim
+  - NEOVIM:
+      layout: main-horizontal
+      panes:
+          - cd /home/bertold/Devel/Projects/VIMTraining/Practice && nvim
+  - git:
+      layout: main-horizontal
+      panes:
+          - cd /home/bertold/Devel/Projects/VIMTraining/

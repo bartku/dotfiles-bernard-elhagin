@@ -49,3 +49,5 @@ alias smart='~/Downloads/smartgit/bin/smartgit.sh &'
 
 alias  nvim='export VIMRUNTIME=/usr/local/share/nvim/runtime && \nvim'
 alias  vim='export VIMRUNTIME=/usr/share/vim/vim90 && \vim'
+
+alias kk='kill -9 **'

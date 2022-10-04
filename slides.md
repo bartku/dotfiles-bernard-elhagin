@@ -6,13 +6,6 @@
    3. Operators
    4. Text objects
    5. Combining operators with motions and text objects
-      -- deleting   (d)
-      -- changing   (c)
-      -- yanking    (y)
-      -- indenting  (>)
-      -- outdenting (<)
-      -- uppercase  (gU)
-      -- lowercase  (gu)
 
 
 ---
@@ -41,16 +34,20 @@
   7.  *)*              forward to next sentence
   8.  *^*              to the beggining of the line
   9.  *$*              to the end of the line
-  10. *f[char]*        forward to first occurance of [char] in current line
-  11. *t[char]*        forward to one character before first occurance of [char] in current line
-  12. *F[char]*        back to first previous occurance of [char] in current line
-  13. *T[char]*        back to one character before first previous occurance of [char] in current line
-  14. *; ,*            repeat last f F or t T motion
-  15. *gg*             beggining of file
-  16. *G*              end of file
-  17. *%*              to matching ( { [ <
+  10. *f/F[char]*      forward/back to next/previous occurance of [char] in current line
+  11. *t/T[char]*      forward/back to one character before next/previous occurance of [char] in current line
+  12. *; ,*            repeat last f F or t T motion
+  13. *gg*             beggining of file
+  14. *G*              end of file
+  15. *%*              to matching ( { [ <
+  16. *<C-F>*          page down (forward)
+  17. *<C-B>*          page up (backwards)
+  18. *<C-D>*          half a page down (forward)
+  19. *<C-U>*          half a page up (backwards)
+  20. *<C-Y>*          scroll one line up
+  21. *<C-E>*          scroll one line down
 
-  >:help motion.txt
+>:help motion.txt
 
 ---
 
@@ -71,11 +68,19 @@
   13. *it*      inside  <tag/>
   14. *at*      around  <tag/>
 
-  >:help text-objects
+>:help text-objects
 
 ---
 
 # Operator + motion/text-object
+
+   deleting   (d)
+   changing   (c)
+   yanking    (y)
+   indenting  (>)
+   outdenting (<)
+   uppercase  (gU)
+   lowercase  (gu)
 
   1.  *diw*     delete inside word
   2.  *daw*     delete around word
