@@ -321,10 +321,10 @@ nnoremap <leader>w :%s/\s\+$//<CR>
 
 " Change/select object between //
 onoremap <silent> i/ :<C-U>normal! T/vt/<CR>
-onoremap <silent> a/ :<C-U>normal! F/vt/<CR>
+onoremap <silent> a/ :<C-U>normal! F/vf/<CR>
 
 xnoremap <silent> i/ :<C-U>normal! T/vt/<CR>
-xnoremap <silent> a/ :<C-U>normal! F/vt/<CR>
+xnoremap <silent> a/ :<C-U>normal! F/vf/<CR>
 
 onoremap <silent> iy :<C-U>execute "normal!?^---\r:nohlsearch\rjV/^---\rk"<cr>
 onoremap <silent> ay :<C-U>execute "normal!?^---\r:nohlsearch\rV/^---\r"<cr>

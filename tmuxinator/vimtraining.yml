@@ -15,12 +15,12 @@ windows:
   - VIM:
       layout: main-horizontal
       panes:
-          - cd /home/bertold/Devel/Projects/VIMtraining/Practice && vim
+          - cd /home/bertold/Devel/Projects/VIMTraining/Practice && vim
   - NEOVIM:
       layout: main-horizontal
       panes:
-          - cd /home/bertold/Devel/Projects/VIMtraining/Practice && nvim
+          - cd /home/bertold/Devel/Projects/VIMTraining/Practice && nvim
   - git:
       layout: main-horizontal
       panes:
-          - cd /home/bertold/Devel/Projects/VIMtraining/
+          - cd /home/bertold/Devel/Projects/VIMTraining/

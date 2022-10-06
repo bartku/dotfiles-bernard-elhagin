@@ -18,6 +18,7 @@ alias gc='git commit'
 alias gaa='git add --all'
 alias gpgm='git push github master'
 alias grh='git reset --hard'
+alias ga='git commit --amend --no-edit'
 
 alias d='dman.sh'
 
