@@ -28,6 +28,7 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'sjl/gundo.vim'
 Plug 'godlygeek/tabular'
 Plug 'xolox/vim-misc'
@@ -100,8 +101,6 @@ set history=3000
 set encoding=utf-8
 set noshowmode
 set scrolloff=8
-set wildmenu
-set wildmode=list:full
 set ruler
 set cmdheight=2
 set backspace=2
@@ -125,10 +124,12 @@ set autoread
 set ffs=unix,dos
 set expandtab
 set shiftwidth=4
+set shiftround
 set tabstop=4
 set smarttab
-set ai
-set si
+set autoindent
+set smartindent
+set copyindent
 set nowrap
 set laststatus=2
 set path+=.,~/Devel/Projects/**
@@ -141,8 +142,15 @@ set diffopt=internal,filler,context:3,indent-heuristic,algorithm:patience
 set clipboard=unnamed,unnamedplus
 set hidden
 set updatetime=1000
-set timeoutlen=300
+set timeoutlen=1000
 set splitbelow splitright
+set wildmode=list:full
+set wildmenu
+set wildignore+=*\\tmp\\*,*.sw?,*.zip,*.settings,*.esb_diagram,*\\*sandbox\\*,*.classpath,*\\.meta\\*
+set wildignore+=.git,*.orig
+set wildignore+=*.exe,*.o,*.obj,*.dll,*.manifest
+set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
+
 
 set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
@@ -413,7 +421,7 @@ vnoremap <leader>z za
 
 " ]]]
 
-" GUI -------------------------------------------------------------------- [[[
+" Theme ------------------------------------------------------------------ [[[
 
 " Change cursor shape/color depending on mode
 if &term =~ "xterm\\|rxvt"
@@ -596,11 +604,6 @@ endif
 
 "let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPS='--reverse'
-
-set wildignore+=*\\tmp\\*,*.sw?,*.zip,*.settings,*.esb_diagram,*\\*sandbox\\*,*.classpath,*\\.meta\\*
-set wildignore+=.git,*.orig
-set wildignore+=*.exe,*.o,*.obj,*.dll,*.manifest
-set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
 
 command! -bang -nargs=* FindInRepo call fzf#run({ 'sink': 'e', 'source': 'git ls-files' })
 

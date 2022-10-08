@@ -126,4 +126,5 @@
   2. what do you do very often - map it
   3. cheatsheet (5 - 10 new things)
   4. :help user-manual
-  5. Drew Neil "Practical Vim" & vimcast.org
+  5. :help quickref
+  6. Drew Neil "Practical Vim" & vimcast.org
