@@ -1,21 +1,21 @@
 
 # Itinerary
 
-   1. How and why Vim is unique
-   2. Basic motions
-   3. Operators
-   4. Text objects
-   5. Combining operators with motions and text objects
-
+   0. How and why Vim is unique
+   0. Basic motions
+   0. Operators
+   0. Text objects
+   0. Combining operators with motions and text objects
+   0. Insert mode
 
 ---
 
 # How and why Vim is unique
 
-  1. Vi + Improved = Vim
-  2. The [ADM-3A](https://upload.wikimedia.org/wikipedia/commons/7/77/Adm3aimage.jpg)
-  3. Keyboard layout - the home row ASDF JKL;
-  4. Dealing with ESC
+  0. Vi + Improved = Vim
+  0. The [ADM-3A](https://upload.wikimedia.org/wikipedia/commons/7/77/Adm3aimage.jpg)
+  0. Keyboard layout - the home row ASDF JKL;
+  0. Dealing with ESC
 
 
 >:help develop.txt
@@ -25,27 +25,27 @@
 # Basic motions
 
 
-  1.  *h j k l*        left, down, up, right
-  2.  *w/W*            forward one word/WORD
-  3.  *b/B*            back one word/WORD
-  4.  *}*              forward to next empty line
-  5.  *{*              back to previous empty line
-  6.  *(*              back to previous sentence
-  7.  *)*              forward to next sentence
-  8.  *^*              to the beggining of the line
-  9.  *$*              to the end of the line
-  10. *f/F[char]*      forward/back to next/previous occurance of [char] in current line
-  11. *t/T[char]*      forward/back to one character before next/previous occurance of [char] in current line
-  12. *; ,*            repeat last f F or t T motion
-  13. *gg*             beggining of file
-  14. *G*              end of file
-  15. *%*              to matching ( { [ <
-  16. *<C-F>*          page down (forward)
-  17. *<C-B>*          page up (backwards)
-  18. *<C-D>*          half a page down (forward)
-  19. *<C-U>*          half a page up (backwards)
-  20. *<C-Y>*          scroll one line up
-  21. *<C-E>*          scroll one line down
+  *h j k l*        left, down, up, right
+  *w/W*            forward one word/WORD
+  *b/B*            back one word/WORD
+  *}*              forward to next empty line
+  *{*              back to previous empty line
+  *(*              back to previous sentence
+  *)*              forward to next sentence
+  *^*              to the beggining of the line
+  *$*              to the end of the line
+  *f/F[char]*      forward/back to next/previous occurance of [char] in current line
+  *t/T[char]*      forward/back to one character before next/previous occurance of [char] in current line
+  *; ,*            repeat last f F or t T motion
+  *gg*             beggining of file
+  *G*              end of file
+  *%*              to matching ( { [ <
+  *<C-F>*          page down (forward)
+  *<C-B>*          page up (backwards)
+  *<C-D>*          half a page down (forward)
+  *<C-U>*          half a page up (backwards)
+  *<C-Y>*          scroll one line up
+  *<C-E>*          scroll one line down
 
 >:help motion.txt
 
@@ -53,20 +53,20 @@
 
 # Text objects
 
-  1.  *iw*      inside word
-  2.  *aw*      around word
-  3.  *iW*      inside WORD
-  4.  *aW*      around WORD
-  5.  *ip*      inside paragraph
-  6.  *ap*      around paragraph
-  7.  *i{*      inside  { }
-  8.  *a{*      around  { }
-  9.  *i(*      inside  ( )
-  10. *a(*      around  ( )
-  11. *i"*      inside  " "
-  12. *a"*      around  " "
-  13. *it*      inside  <tag/>
-  14. *at*      around  <tag/>
+  *iw*      inside word
+  *aw*      around word
+  *iW*      inside WORD
+  *aW*      around WORD
+  *ip*      inside paragraph
+  *ap*      around paragraph
+  *i{*      inside  { }
+  *a{*      around  { }
+  *i(*      inside  ( )
+  *a(*      around  ( )
+  *i"*      inside  " "
+  *a"*      around  " "
+  *it*      inside  <tag/>
+  *at*      around  <tag/>
 
 >:help text-objects
 
@@ -74,23 +74,43 @@
 
 # Operator + motion/text-object
 
-   deleting   (d)
-   changing   (c)
-   yanking    (y)
-   indenting  (>)
-   outdenting (<)
-   uppercase  (gU)
-   lowercase  (gu)
+   delete   (d)
+   change   (c)
+   yank     (y)
+   indent   (>)
+   outdent  (<)
+   toUpper  (gU)
+   toLower  (gu)
 
-  1.  *diw*     delete inside word
-  2.  *daw*     delete around word
-  5.  *cip*     change inside paragraph
-  6.  *cap*     change around paragraph
-  7.  *yi{*     yank inside  { }
-  8.  *ya{*     yank around  { }
-  9.  *gUi"*    make everything in " " UPPERCASE
-  10. *>ip*     indent inside paragraph
+  *diw*     delete inside word
+  *daw*     delete around word
+  *diW*     delete inside WORD
+  *daW*     delete around WORD
+  *cip*     change inside paragraph
+  *cap*     change around paragraph
+  *yi{*     yank inside  { }
+  *ya{*     yank around  { }
+  *gUi"*    make everything in " " UPPERCASE
+  *>ip*     indent inside paragraph
 
+>
+> Operations and motions can be prepended with a count!
+>
+
+---
+
+
+# Insert mode
+
+  *i* - enter insert mode at cursor
+  *I* - enter insert mode at first non-blank character
+  *s* - delete character under cursor and enter insert mode
+  *S* - delete whole line and start insert mode at the beginning of same line
+  *a* - move right one character and enter insert mode
+  *A* - move to the end of the line and enter insert mode
+  *o* - create new empty line under current line and enter insert mode
+  *O* - create new empty line above current line and enter insert mode
+  *C* - delete from the cursor to the end of the line and enter insert mode
 
 ---
 
@@ -106,6 +126,4 @@
   2. what do you do very often - map it
   3. cheatsheet (5 - 10 new things)
   4. :help user-manual
-  5. Drew Neil
-    "Practical Vim"
-    vimcast.org
+  5. Drew Neil "Practical Vim" & vimcast.org

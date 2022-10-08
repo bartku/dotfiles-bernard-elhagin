@@ -65,6 +65,16 @@ return require('packer').startup(function()
     use 'Pocco81/true-zen.nvim'
 
     use {
+        'kylechui/nvim-surround',
+        tag = '*',
+        config = function ()
+            require("nvim-surround").setup({
+
+            })
+        end
+    }
+
+    use {
         'windwp/nvim-autopairs',
         config = function()
             require('nvim-autopairs').setup{}
