@@ -22,8 +22,6 @@ fi
 export VIM=$HOME/.vim
 export VIMRUNTIME=/usr/local/share/nvim/runtime
 
-[[ -f $HOME/.proxy.zsh ]] && source $HOME/.proxy.zsh
-
 # less() color output
 export LESS=-iXR
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
