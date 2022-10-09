@@ -96,11 +96,14 @@ endif
 
 " ]]]
 
+" Temporary
+let g:traces_enabled=0
+
 " Basic Options ---------------------------------------------------------- [[[
 set history=3000
 set encoding=utf-8
 set noshowmode
-set scrolloff=8
+set scrolloff=4
 set ruler
 set cmdheight=2
 set backspace=2
@@ -199,7 +202,7 @@ syntax enable
 " Mappings --------------------------------------------------------------- [[[
 
 imap jk <ESC>
-vnoremap jk <ESC>
+vnoremap <c-j><c-k> <ESC>
 cnoremap jk <C-U> <ESC>
 
 let mapleader=' '
@@ -459,10 +462,10 @@ set bg=dark
 
 hi Normal guibg=grey10
 hi CursorLineNr cterm=none
+hi CursorLine cterm=none
 hi String guifg=hotpink
 hi Search guibg=yellow guifg=black
 hi Visual guibg=yellow guifg=black
-hi CursorLine cterm=none term=none
 hi String guifg=hotpink
 
 hi QuickScopePrimary cterm=underline,bold gui=underline,bold ctermfg=red guifg=red

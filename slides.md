@@ -1,12 +1,12 @@
 
 # Itinerary
 
-   0. How and why Vim is unique
-   0. Basic motions
-   0. Operators
-   0. Text objects
-   0. Combining operators with motions and text objects
-   0. Insert mode
+   1. How and why Vim is unique
+   2. Basic motions
+   3. Operators
+   4. Text objects
+   5. Combining operators with motions and text objects
+   6. Insert mode
 
 ---
 
