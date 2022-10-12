@@ -10,13 +10,24 @@
 
 ---
 
-# How and why Vim is unique
+# How and why Vim is unique (1)
 
   0. Vi + Improved = Vim
-  0. The [ADM-3A](https://upload.wikimedia.org/wikipedia/commons/7/77/Adm3aimage.jpg)
   0. Keyboard layout - the home row ASDF JKL;
-  0. Dealing with ESC
+  0. The [ADM-3A](http://xahlee.info/kbd/iold51593/ADM-3A_keyboard_cb140.jpg)
 
+>:help develop.txt
+
+---
+
+# How and why Vim is unique (2)
+
+Vim is
+
+  1. ...ubiquitous
+  2. ...extremely efficient
+  3. ...extremely customizable
+  4. ...extremely fast
 
 >:help develop.txt
 
@@ -28,12 +39,10 @@
   *h j k l*        left, down, up, right
   *w/W*            forward one word/WORD
   *b/B*            back one word/WORD
-  *}*              forward to next empty line
-  *{*              back to previous empty line
-  *(*              back to previous sentence
-  *)*              forward to next sentence
-  *^*              to the beggining of the line
-  *$*              to the end of the line
+  *) (*            forward/back to next/previous sentence
+  *} {*            forward/back to next/previous empty line
+  *^ g_*           to the first/last non-blank character in the line
+  *0 $*            to the beginning/end of the line
   *f/F[char]*      forward/back to next/previous occurance of [char] in current line
   *t/T[char]*      forward/back to one character before next/previous occurance of [char] in current line
   *; ,*            repeat last f F or t T motion
@@ -74,13 +83,13 @@
 
 # Operator + motion/text-object
 
-   delete   (d)
-   change   (c)
-   yank     (y)
-   indent   (>)
-   outdent  (<)
-   toUpper  (gU)
-   toLower  (gu)
+   __delete__   (d)
+   __change__   (c)
+   __yank__     (y)
+   __indent__   (>)
+   __outdent__  (<)
+   __toUpper__  (gU)
+   __toLower__  (gu)
 
   *diw*     delete inside word
   *daw*     delete around word
@@ -90,15 +99,16 @@
   *cap*     change around paragraph
   *yi{*     yank inside  { }
   *ya{*     yank around  { }
-  *gUi"*    make everything in " " UPPERCASE
+  *gUi"*    make everything in double quotes UPPERCASE
   *>ip*     indent inside paragraph
 
->
 > Operations and motions can be prepended with a count!
 >
+> *5dw*  delete 5 words
+> *12j*  go down 12 lines
+> *3$*   go to the end of 3 lines, including the current one
 
 ---
-
 
 # Insert mode
 
@@ -111,6 +121,16 @@
   *o* - create new empty line under current line and enter insert mode
   *O* - create new empty line above current line and enter insert mode
   *C* - delete from the cursor to the end of the line and enter insert mode
+
+---
+
+# Dealing with ESC
+
+  1. Just use ESC
+  2. Use Ctrl-[
+  3. Remap CAPS-LOCK to ESC
+  4. :noremap jk
+  5. [Vim Clutch](https://boingboing.net/2018/03/12/the-vim-clutch-a-footpeda.html)
 
 ---
 
