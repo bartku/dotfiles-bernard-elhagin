@@ -65,7 +65,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'stevearc/vim-arduino'
 Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'preservim/vim-markdown'
+"Plug 'preservim/vim-markdown'
 Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()

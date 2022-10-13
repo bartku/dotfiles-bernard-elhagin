@@ -11,7 +11,7 @@ windows:
   - SLIDES:
       layout: main-horizontal
       panes:
-          - mdp /home/bertold/dotfiles/slides.md
+          - slides /home/bertold/Devel/Projects/VIMTraining/slides.md
   - VIM:
       layout: main-horizontal
       panes:
